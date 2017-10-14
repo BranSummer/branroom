@@ -4,7 +4,7 @@ import org.bran.branroom.entity.User;
 
 public interface LoginService {
 	
-	User loginIn(String userId,String password);
+	User loginAuth(String userId,String password);
 	
 	
 }
