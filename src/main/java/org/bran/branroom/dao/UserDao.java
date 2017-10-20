@@ -6,13 +6,13 @@ import org.bran.branroom.entity.User;
 
 public interface UserDao {
 	
-	User queryByUserId(String id);
+	User queryByUserId(String userId);
 	
-	List<User> queryAllByUserId(String userId);
+	List<User> queryAll();
 	
-	boolean update(User user);
+	void update(User user);
 	
-	boolean insert(User user);
+	void insert(User user);
 	
-	boolean delete(User user);
+	void delete(User user);
 }

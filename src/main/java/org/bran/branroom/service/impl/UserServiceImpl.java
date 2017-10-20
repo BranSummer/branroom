@@ -21,25 +21,25 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public boolean resetPassword(User user, String pwd) {
+	public void resetPassword(User user, String pwd) {
 		if(user.getPassword().equals(pwd)){
 			throw new RepeatPasswordException("repeat password");
 		}
 		user.setPassword(pwd);
-		return userDao.update(user);
+		userDao.update(user);
 	}
 
 	@Override
-	public boolean updateyInfo(User user, String email, String introduction) {
+	public void updateyInfo(User user, String email, String introduction) {
 		user.setEmail(email);
 		user.setIntroduction(introduction);
-		return userDao.update(user);
+		userDao.update(user);
 	}
 
 	@Override
-	public boolean chageAvatar(User user, String avatar) {
+	public void chageAvatar(User user, String avatar) {
 		user.setAvatar(avatar);
-		return userDao.update(user);
+		userDao.update(user);
 	}
 
 }

@@ -21,8 +21,8 @@ public class LoginServiceImpl implements LoginService {
 		if(user==null){
 			throw new NoUserException("No such user");
 		}
-		if(user.getPassword().equals(password)){
-			throw new WrongPwdException("incorrect password");
+		if(!user.getPassword().equals(password)){
+			throw new WrongPwdException("Incorrect password");
 		}
 		return user;
 	}

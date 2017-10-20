@@ -4,11 +4,11 @@ import org.bran.branroom.entity.User;
 
 public interface UserService {
 	
-	boolean resetPassword(User user,String pwd);
+	void resetPassword(User user,String pwd);
 	
-	boolean updateyInfo(User user,String email,String introduction);
+	void updateyInfo(User user,String email,String introduction);
 	
-	boolean chageAvatar(User user,String avatar);
+	void chageAvatar(User user,String avatar);
 	
 	
 }

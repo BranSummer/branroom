@@ -10,6 +10,10 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	<context:component-scan base-package="org.bran.branroom"/>
+	<!-- Enable annotation scanning ,scanning all beans except for @Controller -->
+    <context:component-scan base-package="org.bran.branroom">
+        <context:exclude-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 	
 </beans>

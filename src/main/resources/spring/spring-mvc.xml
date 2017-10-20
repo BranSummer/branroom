@@ -10,6 +10,14 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	<context:component-scan base-package="org.bran.branroom.controller"/>
+	<!-- Enable annotation scanning ,MVC only scan for @Controller -->
+	 <context:component-scan base-package="org.bran.branroom" use-default-filters="false">
+        <!-- sacn for@Controller -->
+        <context:include-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+        <!--控制器增强，使一个Contoller成为全局的异常处理类，类中用@ExceptionHandler方法注解的方法可以处理所有Controller发生的异常 -->
+        <context:include-filter type="annotation"
+            expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    </context:component-scan>
 	
 </beans>
