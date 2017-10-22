@@ -1,5 +1,8 @@
 /**
+ * D:/JEE_workspace/branroom/src/main/resources/sql/branbase.sql
+ * 
  * table user
+ * 
  */
 drop table if exists user;
 create table user(
@@ -15,4 +18,6 @@ create table user(
  * initialize the table 'user'
  */
 insert into user 
-values('admin','123456','0','gintaman.jpg','superadmin','123456@example.com','my world');
+values
+('admin','123456','0','gintaman.jpg','superadmin','123456@example.com','my world'),
+('test01','123456','0','default.png','test_user','test@bran.com','test user');
