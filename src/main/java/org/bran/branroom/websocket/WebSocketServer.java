@@ -25,7 +25,7 @@ import org.bran.branroom.entity.User;
  * @author: BranSummer
  * @date: 2017/10/07 11:50:43
  */
-@ServerEndpoint(value="/websocketdemo/{userParam}")
+@ServerEndpoint(value="/server/{userParam}")
 public class WebSocketServer {
 	
 	private static int onlineCount=0;
