@@ -78,7 +78,7 @@
 		<!-- js -->
 			<script type="text/javascript">
 			var websocket=null;
-			var ws="ws://${path}/server/${user.userId}";
+			var ws="ws://127.0.0.1:8080/branroom/server/${user.userId}";
 			//judge whether support websocket
 			if("websocket" in window){
 				websocket=new WebSocket(ws);
@@ -105,7 +105,7 @@
 				var message=$("#input_area").val();
 				var messagePack=JSON.stringify(
 					{
-						"type":"userMessage",  //"userMessage|sysMessage"
+						"type":"0",  //"userMessage==0|sysMessage==-1"
 						"userid":'${sessionScope.user.userId}',
 						"avatar":'${user.avatar}',
 						"content":message    // if type==sysMessage then content{add|remove}
@@ -125,9 +125,9 @@
 			//Solve the message from server
 			function parseMessage(message){
 				var m=JSON.parse(message);
-				if(m.type=="userMessage"){
+				if(m.type=="0"){
 					setUserMessage(m);
-				}else if(m.type=="sysMessage"){
+				}else if(m.type=="-1"){
 					setSysMessage(m);
 				}
 			}

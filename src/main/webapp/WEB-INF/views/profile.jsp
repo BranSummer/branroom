@@ -105,15 +105,15 @@
 			        	
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar001.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar001.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
-				        			<input type="radio" id="avatars" value="img/avatar001.jpg" name="avatars"/>
+				        			<input type="radio" id="avatars" value="${path}/static/img/avatar001.jpg" name="avatars"/>
 				        		</div>
 			        		</div>
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar002.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar002.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar002.jpg" name="avatars"/>
 				        		</div>
@@ -121,7 +121,7 @@
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar003.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar003.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar003.jpg" name="avatars"/>
 				        		</div>
@@ -129,7 +129,7 @@
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar004.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar004.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar004.jpg" name="avatars"/>
 				        		</div>
@@ -137,7 +137,7 @@
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar005.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar005.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar005.jpg" name="avatars"/>
 				        		</div>
@@ -145,7 +145,7 @@
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar006.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar006.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar006.jpg" name="avatars"/>
 				        		</div>
@@ -153,7 +153,7 @@
 			        	</div>
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/avatar007.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/avatar007.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/avatar007.jpg" name="avatars"/>
 				        		</div>
@@ -162,7 +162,7 @@
 			        	
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
-			        			<img src="img/thegirl.jpg" class="img-rounded"/>
+			        			<img src="${path}/static/img/thegirl.jpg" class="img-rounded"/>
 				        		<div class="caption text-center">
 				        			<input type="radio" id="avatars" value="${path}/static/img/thegirl.jpg" name="avatars"/>
 				        		</div>

@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -94,9 +95,10 @@ public class WebSocketServer {
 		addOnlineCount();
 		map.put(user, wsSession);
 		onlineList.add(user);
-		String message=new ChatMessage("add",user,"sysMessage",onlineList).toJson();
+		String message=new ChatMessage("add",user,ChatMessage.TYPE_SYS,onlineList).toJson();
 		broadcast(message);
-		LOGGER.info("New connection added"+userParam+", Number of Online users:"+getOnlineCount());
+		LOGGER.info("New connection added ["+userParam+"], Number of Online users:"+getOnlineCount());
+
 	}
 	
 	/**
@@ -111,7 +113,7 @@ public class WebSocketServer {
 		onlineList.remove(user);
 		webSocketSet.remove(this);
 		subOnlineCount();
-		String message=new ChatMessage("remove",user,"sysMessage",onlineList).toJson();
+		String message=new ChatMessage("remove",user,ChatMessage.TYPE_SYS,onlineList).toJson();
 		broadcast(message);
 		LOGGER.info("One connection removed"+user.getUserId()+", Number of Online users:"+getOnlineCount());
 	}
@@ -127,5 +129,18 @@ public class WebSocketServer {
 	@OnMessage
 	public void OnMessage(String message,Session session){
 		broadcast(message);
+	}
+	
+	/**
+	 * 
+	 * @Title: onError
+	 * @Description: TODO
+	 * @param session
+	 * @param error
+	 * @return: void
+	 */
+	@OnError
+	public void onError(Session session,Throwable error){
+		error.printStackTrace();
 	}
 }

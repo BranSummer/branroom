@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <% //remember id&pwd by cookie
 	String username="";
 	String password="";
@@ -83,7 +85,7 @@
 					};
 					$.ajax({
 						type:"post",
-						url:"#",
+						url:"${path}/signIn",
 						async:true,
 						dataType:"json",
 						data:{
@@ -92,14 +94,14 @@
 							"isRemember":isChecked
 						},
 						success:function(json){
-							if(json.message=="success"){
-								window.location.href="#";
+							if(json.status=="1"){
+								window.location.href="${path}/profile";
 							}else{
-								alert("Wrong password or non-existent account!");
+								alert(json.message);
 							}
 						},
 						error:function(XMLHttpRequest, textStatus, errorThrown){
-							alert("error happened!");
+							alert("fail to access!");
 						}
 					});
 				};

@@ -13,6 +13,20 @@ public class ChatMessage implements Serializable {
 	@JsonIgnore
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 *   "-1"
+	 * system message 系统消息 
+	 */
+	@JsonIgnore
+	public static final String TYPE_SYS="-1";
+	
+	/**
+	 *     "0"
+	 * user chatting message 用户聊天消息 
+	 */
+	@JsonIgnore
+	public static final String TYPE_USER="0";
+	
 	private String type;
 	
 	private User user;
@@ -67,7 +81,7 @@ public class ChatMessage implements Serializable {
 		String json=null;
 		ObjectMapper mapper=new ObjectMapper();
 		try {
-			json= mapper.writeValueAsString(this);
+			json=mapper.writeValueAsString(this);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

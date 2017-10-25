@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService {
 	private UserDao userDao;
 
 	@Override
-	public User loginAuth(String userId, String password) {
+	public User loginAuth(String userId, String password) throws NoUserException,WrongPwdException{
 		User user=userDao.queryByUserId(userId);
 		if(user==null){
 			throw new NoUserException("No such user");

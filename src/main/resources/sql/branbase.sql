@@ -19,5 +19,5 @@ create table user(
  */
 insert into user 
 values
-('admin','123456','0','gintaman.jpg','superadmin','123456@example.com','my world'),
-('test01','123456','0','default.png','test_user','test@bran.com','test user');
+('admin','123456','0','/branroom/static/img/gintaman.jpg','superadmin','123456@example.com','my world'),
+('test01','123456','0','/branroom/static/img/default.png','test_user','test@bran.com','test user');

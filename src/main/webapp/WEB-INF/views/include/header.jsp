@@ -24,8 +24,8 @@
 		   <span class="caret" ></span>
 		  </button>
 		  <ul class="dropdown-menu">
-		    <li><a href="#">Chat room</a></li>
-		    <li><a href="#">Your profile</a></li>
+		    <li><a href="${path}/chat">Chat room</a></li>
+		    <li><a href="${path}/profile">Your profile</a></li>
 		    <li><a href="#">Blog</a></li>
 		    <li><a href="#">Sign out</a></li>
 		  </ul>

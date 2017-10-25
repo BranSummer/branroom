@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	
-	<!-- Enable annotation scanning ,MVC only scan for @Controller -->
+	<!-- Enable annotation scanning ,MVC scan for @Controller only -->
 	 <context:component-scan base-package="org.bran.branroom" use-default-filters="false">
         <!-- sacn for@Controller -->
-        <context:include-filter type="annotation"
-            expression="org.springframework.stereotype.Controller" />
-        <!--控制器增强，使一个Contoller成为全局的异常处理类，类中用@ExceptionHandler方法注解的方法可以处理所有Controller发生的异常 -->
-        <context:include-filter type="annotation"
-            expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 	
+	<!-- viewResolver  视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!--  static resources mapping 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
+    <mvc:resources location="/" mapping="/**/*.html"/>
+    <mvc:resources location="/" mapping="/**/*.js"/>
+    <mvc:resources location="/" mapping="/**/*.css"/>
+	<mvc:resources location="/" mapping="/**/*.jpg"/>
+	<mvc:resources location="/" mapping="/**/*.png"/>
+
+   <!-- enable annotation model 开启注解模式 -->
+	<mvc:annotation-driven />
+    
+    
+    
 </beans>
