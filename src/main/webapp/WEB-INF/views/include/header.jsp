@@ -27,7 +27,7 @@
 		    <li><a href="${path}/chat">Chat room</a></li>
 		    <li><a href="${path}/profile">Your profile</a></li>
 		    <li><a href="#">Blog</a></li>
-		    <li><a href="#">Sign out</a></li>
+		    <li><a href="${path}/signOut">Sign out</a></li>
 		  </ul>
 		</div>
 	</div>	

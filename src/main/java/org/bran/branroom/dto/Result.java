@@ -19,6 +19,18 @@ public class Result {
 	
 	private String message;
 
+	
+	
+	public Result() {
+		super();
+	}
+
+	public Result(String status, String message) {
+		super();
+		this.status = status;
+		this.message = message;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -34,6 +46,7 @@ public class Result {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
 	
 	public String toJson(){
 		String json=null;

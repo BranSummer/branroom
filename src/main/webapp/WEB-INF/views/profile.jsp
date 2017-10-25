@@ -190,7 +190,7 @@
 				var avatar=$("input[name='avatars']:checked").val();
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"${path}/${user.userId}/chageAvatar",
 					async:false,
 					dataType:"json",
 					data:{"avatar":avatar},
@@ -199,7 +199,7 @@
 						alert(json.message);
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
-						alert("error happened!");
+						alert("fail to connect");
 					}
 					
 				});
@@ -219,7 +219,7 @@
 				}
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"${path}/${user.userId}/updateInfo",
 					async:false,
 					dataType:"json",
 					data:{
@@ -230,7 +230,7 @@
 						alert(json.message);
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
-						alert("error happened!");
+						alert("fail to connect");
 					}
 				});
 			};
@@ -255,7 +255,7 @@
 				
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"${path}/${user.userId}/resetPwd",
 					async:false,
 					dataType:"json",
 					data:{"password":pwd1},
@@ -263,7 +263,7 @@
 						alert(json.message);
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
-						alert("error happened!");
+						alert("fail to connect");
 					}
 				});
 				return true;

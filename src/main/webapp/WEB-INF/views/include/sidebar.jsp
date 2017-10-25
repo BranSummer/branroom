@@ -37,7 +37,7 @@
 		window.location.href='${path}/profile';
 	});
 	$("#signout").click(function(){
-		window.location.href='#';
+		window.location.href='${path}/signOut';
 	});
 	$("#blog").click(function(){
 		window.location.herf='#';
