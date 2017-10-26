@@ -115,7 +115,7 @@ public class WebSocketServer {
 		subOnlineCount();
 		String message=new ChatMessage("remove",user,ChatMessage.TYPE_SYS,onlineList).toJson();
 		broadcast(message);
-		LOGGER.info("One connection removed"+user.getUserId()+", Number of Online users:"+getOnlineCount());
+		LOGGER.info("One connection removed ["+user.getUserId()+"], Number of Online users:"+getOnlineCount());
 	}
 	
 	/**

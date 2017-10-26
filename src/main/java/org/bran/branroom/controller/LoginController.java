@@ -50,6 +50,6 @@ public class LoginController {
 	@RequestMapping(value="/signOut")
 	public String signUp(SessionStatus sessionStatus){
 		sessionStatus.setComplete();
-		return "login";
+		return "redirect:/login";
 	}
 }
