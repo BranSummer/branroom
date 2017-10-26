@@ -25,7 +25,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<jsp:include page="include/commonfiles.jsp" flush="true"/>
+		<jsp:include page="include/commonfiles.jsp"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<title>Branroom</title>
@@ -33,8 +33,7 @@
 	
 	<body>
 		<!-- header -->
-		<%-- <%@ include file="include/header.jsp" %> --%>
-		<jsp:include page="include/header.jsp" flush="true"/>
+		<jsp:include page="include/header.jsp"/>
 		
 		<!--login area-->
 			<h3 align="center">Sign in to Bran's room</h3>
