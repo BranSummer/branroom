@@ -10,6 +10,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class User {
 	
+	@JsonIgnore
+	public static final boolean GENDER_MALE=true;
+	
+	@JsonIgnore
+	public static final boolean GENDER_FEMALE=false;
+	
+	/**
+	 * default avatar img="/branroom/static/img/default.png"
+	 */
+	@JsonIgnore
+	public static final String DEFAULT_AVATAR="/branroom/static/img/default.png";
+	
+	/**
+	 * default introduction ""
+	 */
+	@JsonIgnore
+	public static final String DEFAULT_INTRRO="";
+	
+	@JsonIgnore
+	public static final String PERMI_ADMIN="10";
+	
+	@JsonIgnore
+	public static final String PERMI_USER_C="0";
+	
+	@JsonIgnore
+	public static final String PERMI_USER_B="1";
+	
 	private String userId;
 	
 	@JsonIgnore

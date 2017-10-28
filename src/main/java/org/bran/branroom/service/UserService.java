@@ -10,5 +10,7 @@ public interface UserService {
 	
 	void chageAvatar(User user,String avatar);
 	
+	void cancelUser(User user);
 	
+	void signUp(User user);
 }

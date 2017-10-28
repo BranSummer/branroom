@@ -1,7 +1,6 @@
 package org.bran.branroom.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.bran.branroom.dto.Result;
 import org.bran.branroom.entity.User;
@@ -25,7 +24,6 @@ public class LoginController {
 	private LoginService loginService;
 	
 	
-	
 	@RequestMapping(value="/signIn",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
 	public String signIn(@RequestParam("userid")String userId, @RequestParam("pwd")String password, 
@@ -46,6 +44,7 @@ public class LoginController {
 		
 		return result.toJson();
 	}
+	
 	
 	@RequestMapping(value="/signOut")
 	public String signUp(SessionStatus sessionStatus){

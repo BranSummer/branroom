@@ -42,4 +42,27 @@ public class UserServiceImpl implements UserService {
 		userDao.update(user);
 	}
 
+	@Override
+	public void cancelUser(User user) {
+		userDao.delete(user);
+		
+	}
+	
+	/**
+	 * The user registration for business logic processing
+	 * <p>the client give the necessary userId,password and email</P>
+	 * so this method give the default values for other properties 
+	 */
+	@Override
+	public void signUp(User user) {
+		user.setAvatar(User.DEFAULT_AVATAR);
+		user.setGender(User.GENDER_MALE);
+		user.setPermission(User.PERMI_USER_C);
+		user.setIntroduction(User.DEFAULT_INTRRO);
+		userDao.insert(user);
+		
+	}
+
+	
+
 }

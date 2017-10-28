@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
+/**
+ * 
+ * @ClassName: UserController
+ * @Description: TODO
+ * @author: BranSummer
+ * @date: 2017/10/28 15:37:55
+ */
 @Controller
 @RequestMapping("/{userId}")
 @SessionAttributes("user")
