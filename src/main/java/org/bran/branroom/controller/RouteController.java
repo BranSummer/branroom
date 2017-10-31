@@ -12,6 +12,11 @@ public class RouteController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String signUpPage(){
+		return "signUp";
+	} 
+	
 	@RequestMapping(value = "/chat")
 	public String chatPage(){
 		return "chat";
