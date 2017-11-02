@@ -4,6 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * 
+ * @ClassName: RouteController
+ * @Description: TODO
+ * @author: BranSummer
+ * @date: 2017/11/02 18:38:19
+ */
 @Controller
 public class RouteController {
 	
@@ -12,7 +19,7 @@ public class RouteController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	@RequestMapping(value = "/signUpPage", method = RequestMethod.GET)
 	public String signUpPage(){
 		return "signUp";
 	} 
