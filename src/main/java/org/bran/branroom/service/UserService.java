@@ -12,5 +12,5 @@ public interface UserService {
 	
 	void cancelUser(User user);
 	
-	void signUp(User user);
+	User signUp(User user);
 }

@@ -42,22 +42,29 @@
 						  <div class="form-group">
 						    <label for="InputUser">Username</label>
 						    <input type="text" class="form-control" id="InputUser" placeholder="pick a username">
-							<div class="alert alert-warning alert-hide" id="fail" role="alert">
+							<div class="alert alert-warning alert-hide" id="userfail" role="alert">
 							    this id has been occupied <strong>:-(</strong>
 							</div>
-						 
 						  </div>
+						  
 						  <div class="form-group">
 						    <label for="InputEmail">Email</label>
 						    <input type="text" class="form-control" id="InputEmail" placeholder="you@example.com">
+						  	<div class="alert alert-warning alert-hide" id="emailfail" role="alert">
+							    Incorrect mail format<strong>:-(</strong>
+							</div>
 						  </div>
+						  
 						  <div class="form-group">
-						    <label for="InputPassword">Password</label>
+						    <label for="InputPassword">Password</label> (at least 6 characters)
 						    <input type="password" class="form-control" id="InputPassword" placeholder="create a password">
+						  	<div class="alert alert-warning alert-hide" id="pwdfail" role="alert">
+							    Incorrect password format<strong>:-(</strong>
+							</div>
 						  </div>
 						  
 						    <br/>
-						  <a tabindex="0" id="button" class="btn btn-lg btn-success fullwidth" role="button" data-toggle="popover" data-trigger="focus" title="Message from server" data-content="Wrong password or non-existent account">Sign up</a>
+						  <a id="button" class="btn btn-lg btn-success fullwidth" role="button">Sign up</a>
 						 
 						</form>
 					  </div>
@@ -77,7 +84,10 @@
 			<jsp:include page="include/footer.jsp"/>
 		
 		<script type="text/javascript">
-		var isUseable=false
+		var idTag=false;
+		var emailTag=false;
+		var pwdTag=false;
+		
 		$('#InputUser').blur(function(){
 			checkUserId();
 		})
@@ -94,9 +104,12 @@
 					dataType:"json",
 					success:function(json){
 						if(json.status=='1'){
-							$('#fail').hide();
+							$('#userfail').hide();
+							idTag=true;
+							
 						}else{
-							$('#fail').show();
+							$('#userfail').show();
+							idTag=false;
 						}
 					},
 					error:function(json){
@@ -105,18 +118,57 @@
 				});
 		}
 		
+		$('#InputEmail').blur(function(){
+			checkEmail();
+		})
+		function checkEmail(){
+			var emailText=$('#InputEmail').val();
+			if (isEmail(emailText)) {
+				emailTag=true;
+				$('#emailfail').hide();
+			} else{
+				emailTag=false;
+				$('#emailfail').show();
+			}
+		}
+		function isEmail(str){ 
+			var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
+			return reg.test(str); 
+		}
 		
+		$("#InputPassword").bind('input propertychange',function(){
+			checkPwd();
+		})
+		
+		function checkPwd(){
+			pwdText=$('#InputPassword').val();
+			if(pwdText.length<6||pwdText.length>255){
+				pwdTag=false;
+				$('#pwdfail').show();
+			}else{
+				pwdTag=true;
+				$('#pwdfail').hide();
+			}
+		}
+		
+		$('#button').click(function(){
+			submit();
+		})
 		
 		function submit(){
 			var userid=$("#InputUser").val();
 			var pwd=$("#InputPassword").val();
 			var email=$("#InputEmail").val();
+			alert()
 			if(userid==''||pwd==''||email==''){
-				return false
+				return false;
+			}
+			if(!idTag||!emailTag||!pwdTag){
+				return false;
 			}
 			$.ajax({
 					type:"post",
-					url:"#",
+					url:"${path}/signUp",
 					async:true,
 					data:{
 						"userid":userid,
@@ -126,9 +178,7 @@
 					dataType:"json",
 					success:function(json){
 						if(json.status=='1'){
-							window.location.href="${path}/signUp";
-						}else{
-							alert(json.message);
+							window.location.href="${path}/profile";
 						}
 					},
 					error:function(json){
@@ -137,10 +187,9 @@
 				});
 		}
 		
-		function checkEmail(str){ 
-			var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
-			return reg.test(str); 
-		} 
+		
+		
+		 
 	</script>
 	</body>
 </html>

@@ -55,6 +55,7 @@ public class AccountController {
 		user.setUserId(userId);
 		user.setPassword(password);
 		user.setEmail(email);
+		user=userService.signUp(user);
 		model.addAttribute("user", user);
 		result.setStatus(Result.SUCCESS);
 		result.setMessage("success");

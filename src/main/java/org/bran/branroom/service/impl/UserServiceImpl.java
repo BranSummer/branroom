@@ -54,12 +54,13 @@ public class UserServiceImpl implements UserService {
 	 * so this method give the default values for other properties 
 	 */
 	@Override
-	public void signUp(User user) {
+	public User signUp(User user) {
 		user.setAvatar(User.DEFAULT_AVATAR);
 		user.setGender(User.GENDER_MALE);
 		user.setPermission(User.PERMI_USER_C);
 		user.setIntroduction(User.DEFAULT_INTRRO);
 		userDao.insert(user);
+		return user;
 		
 	}
 
