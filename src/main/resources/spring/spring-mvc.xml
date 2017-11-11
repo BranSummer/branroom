@@ -31,6 +31,29 @@
 	<mvc:resources location="/" mapping="/**/*.jpg"/>
 	<mvc:resources location="/" mapping="/**/*.png"/>
 
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 登录拦截器 -->
+		<mvc:interceptor>
+			<!-- 需要拦截的路径 -->
+			<mvc:mapping path="/**"/>
+			<!-- 排除拦截的地址 -->
+			<mvc:exclude-mapping path="/static/**"/>
+			<bean id="LoginInterceptor" class="org.bran.branroom.interceptor.LoginInterceptor">
+				<property name="urlIgnore">
+					<list>
+						<value>/signIn</value>
+						<value>/login</value>
+						<value>/signUpPage</value>
+						<value>/check</value>
+						<value>/signUp</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
    <!-- enable annotation model 开启注解模式 -->
 	<mvc:annotation-driven />
     

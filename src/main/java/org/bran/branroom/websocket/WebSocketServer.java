@@ -5,6 +5,7 @@ import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import javax.annotation.Resource;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -15,6 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bran.branroom.dao.UserDao;
 import org.bran.branroom.dto.ChatMessage;
 import org.bran.branroom.entity.User;
 
@@ -52,14 +54,14 @@ public class WebSocketServer {
 	}
 	
 	private static synchronized int getOnlineCount(){
-		return onlineCount++;
+		return onlineCount;
 	}
 	
 	
 	//get the user through userId
 	private User getUserById(String userId){
 		User user=new User();
-		//TODO
+		//TODO                  
 		return user;
 	}
 	

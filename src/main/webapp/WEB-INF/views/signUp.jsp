@@ -159,7 +159,6 @@
 			var userid=$("#InputUser").val();
 			var pwd=$("#InputPassword").val();
 			var email=$("#InputEmail").val();
-			alert()
 			if(userid==''||pwd==''||email==''){
 				return false;
 			}

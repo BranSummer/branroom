@@ -196,7 +196,7 @@
 					data:{"avatar":avatar},
 					success:function(json){
 						location.reload();
-						alert(json.message);
+						
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
 						alert("fail to connect");
@@ -260,7 +260,7 @@
 					dataType:"json",
 					data:{"password":pwd1},
 					success:function(json){
-						alert(json.message);
+						
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
 						alert("fail to connect");
