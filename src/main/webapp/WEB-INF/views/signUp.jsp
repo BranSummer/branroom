@@ -28,9 +28,8 @@
 				  	<div class="jumbotron">
 				  		<h1>hello world</h1>
 				  		<p>
-				  			GitHub is a development platform inspired by the way you work. 
-				  			From open source to business, you can host and review code, manage projects, 
-				  			and build software alongside millions of other developers. 
+				  			There's no point in being no point in being grown up 
+				  			if you can't be childish sonetimes. 
 				  		</p>
 				  	</div>
 				  </div>
