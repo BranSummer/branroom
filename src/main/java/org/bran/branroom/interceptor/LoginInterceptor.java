@@ -37,10 +37,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String requestUrl=request.getServletPath();
+		String requestUrl=request.getRequestURI();
 		
 		for(String url:urlIgnore){
-			if(requestUrl.startsWith(url)){
+			if(requestUrl.indexOf(url)>0){
 				return true;
 			}
 		}
