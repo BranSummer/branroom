@@ -26,12 +26,13 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<jsp:include page="include/commonfiles.jsp" flush="true"/>
+		<link rel="stylesheet" type="text/css" href="${path}/static/css/login.css"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<title>Branroom</title>
 	</head>
 	
-	<body>
+	<body class="picUp">
 		<!-- header -->
 		<%-- <%@ include file="include/header.jsp" %> --%>
 		<jsp:include page="include/header.jsp" flush="true"/>

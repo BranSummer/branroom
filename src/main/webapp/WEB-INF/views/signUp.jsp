@@ -12,9 +12,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="${path}/static/css/login.css"/>
 		<title>Insert title here</title>
-	</head>
+	</head> 
 	
-	<body>
+	<body class="picUp">
 	
 		<!-- header -->
 		<%-- <%@ include file="include/header.jsp" %> --%>
@@ -29,7 +29,7 @@
 				  		<h1>hello world</h1>
 				  		<p>
 				  			There's no point in being no point in being grown up 
-				  			if you can't be childish sonetimes. 
+				  			if you can't be childish sonetimes.  
 				  		</p>
 				  	</div>
 				  </div>
