@@ -51,6 +51,14 @@
 				</property>
 			</bean>
 		</mvc:interceptor>
+		
+		<!-- 防止重复登录拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/login"/>
+			<mvc:mapping path="/signUpPage"/>
+			<bean id="antiDupLoginInterceptor" class="org.bran.branroom.interceptor.AntiDupLoginInterceptor">
+			</bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	
