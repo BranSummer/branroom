@@ -78,37 +78,17 @@
 		<!-- js -->
 			<script type="text/javascript">
 			var websocket=null;
-			var ws="ws://127.0.0.1:8080/branroom/server/${user.userId}";
-			//judge whether support websocket
-			if("websocket" in window){
-				websocket=new WebSocket(ws);
-			}else 
-				alert("Not Support websocket");
-			//callback on establish connection
-			websocket.onopen=function(){
-				setMessageInnerHTML("connected ..");
-			}
-			//callback on error
-			websocket.onerror=function(){
-				setMessageInnerHTML("error ! !");
-			}
-			//callback on webSocket close
-			websocket.onclose=function(){
-				setMessageInnerHTML("websocket closed !");
-			}
-			//callback when receive message
-			websocket.onmessage=function(event){
-				parseMessage(event.data);
-			}
+			var ws="ws://"+location.host+"/branroom/server/${user.userId}";
+			establishConn();
 			//send message
 			function send(){
 				var message=$("#input_area").val();
 				var messagePack=JSON.stringify(
 					{
-						"type":"0",  //"userMessage==0|sysMessage==-1"
+						"type":"TYPE_USER_CHAT",  
 						"userid":'${sessionScope.user.userId}',
 						"avatar":'${user.avatar}',
-						"content":message    // if type==sysMessage then content{add|remove}
+						"content":message   
 					//  "list":list,	
 					}		
 				);
@@ -125,9 +105,9 @@
 			//Solve the message from server
 			function parseMessage(message){
 				var m=JSON.parse(message);
-				if(m.type=="0"){
+				if(m.type=="TYPE_USER_CHAT"){
 					setUserMessage(m);
-				}else if(m.type=="-1"){
+				}else if(m.type=="TYPE_SERVER"){
 					setSysMessage(m);
 				}
 			}
@@ -141,24 +121,17 @@
 			
 			//show onlineList and server message 
 			function setSysMessage(anaMessage){
-				var list=anaMessage.list;
+				var list=anaMessage.onlineList;
 				$("#onlineList").html("");
 				$.each(list, function(index, item){
-					if('${user.userId}'!=item.userId){
-						var userItem="<div class=\"btn-group \">"
-									  		+"<button type=\"button\" class=\"btn btn-default dropdown-toggle onlineUser\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >"
-											+"<span>"
-												+item.userId
-											+"</span>"
-											+"<span class=\"caret\"></span>"
-										+"</button>"
-										+ "<ul class=\"dropdown-menu\">"
-										    +"<li><a href=\"#\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Leave Message</a></li>"
-										    +"<li><a href=\"#\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span> have a chat</a></li>"
-										    +"<li><a href=\"#\"><span class=\"glyphicon glyphicon-heart\" aria-hidden=\"true\"></span> watch</a></li>"
-										 +"</ul>"
-								  	+"</div>"	
-					}
+					var userItem=
+						"<div class=\"btn-group \">"
+					  		+"<button type=\"button\" class=\"btn btn-default onlineUser\" >"
+					  		+"<img src=\""+item.avatar+"\" alt=\"...\" class=\"img-rounded\" height=\"40\"width=\"40\" align=\"left\"/>"
+							+"<span>"
+								+item.userId
+							+"</span>"
+				  		+"</div>"
 					$("#onlineList").append(userItem);
 				});
 				
@@ -188,13 +161,11 @@
 			
 			 $('#conBtn').on('click', function () {
 			    var $btn = $(this).button('loading')
-			    // business logic... 
 			    establishConn();
 			    $btn.button('reset')
 			 });
 			  $('#disconBtn').on('click', function () {
 			    var $btn = $(this).button('loading')
-			    // business logic...
 			    closeWebSocket();
 			    $btn.button('reset')
 			 });
@@ -208,6 +179,7 @@
 						//callback on establish connection
 						websocket.onopen=function(){
 							setMessageInnerHTML("connected ..");
+							sendUserInfo();
 						};
 						//callback on error
 						websocket.onerror=function(){
@@ -224,6 +196,18 @@
 				 }else{
 					 alert("connection exists!")
 				 }
+			 }
+			 
+			 function sendUserInfo(){
+				 var userInfo=JSON.stringify(
+						 {
+							"type":"TYPE_USER_INFO",  // TYPE_USER_INFO
+							"userid":'${sessionScope.user.userId}',
+							"avatar":'${sessionScope.user.avatar}',
+							"content":''  //can add other information
+						 }
+				 );
+				 websocket.send(userInfo);
 			 }
 		</script>
 	</body>

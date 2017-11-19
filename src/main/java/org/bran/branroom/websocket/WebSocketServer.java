@@ -5,7 +5,6 @@ import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import javax.annotation.Resource;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -16,9 +15,10 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bran.branroom.dao.UserDao;
-import org.bran.branroom.dto.ChatMessage;
+import org.bran.branroom.dto.ClientMessage;
+import org.bran.branroom.dto.ServerMessage;
 import org.bran.branroom.entity.User;
+import org.bran.branroom.enums.MessageType;
 
 
 /**
@@ -61,7 +61,7 @@ public class WebSocketServer {
 	//get the user through userId
 	private User getUserById(String userId){
 		User user=new User();
-		//TODO                  
+		user.setUserId(userId);            
 		return user;
 	}
 	
@@ -97,9 +97,8 @@ public class WebSocketServer {
 		addOnlineCount();
 		map.put(user, wsSession);
 		onlineList.add(user);
-		String message=new ChatMessage("add",user,ChatMessage.TYPE_SYS,onlineList).toJson();
-		broadcast(message);
-		LOGGER.info("New connection added ["+userParam+"], Number of Online users:"+getOnlineCount());
+		String message=new ServerMessage(MessageType.TYPE_SERVER,user,"add",onlineList).toJson();
+		LOGGER.info("New connection added ["+userParam+"], Number of Online users:"+getOnlineCount()+"Message:"+message);
 
 	}
 	
@@ -115,7 +114,7 @@ public class WebSocketServer {
 		onlineList.remove(user);
 		webSocketSet.remove(this);
 		subOnlineCount();
-		String message=new ChatMessage("remove",user,ChatMessage.TYPE_SYS,onlineList).toJson();
+		String message=new ServerMessage(MessageType.TYPE_SERVER, user, "remove", onlineList).toJson();
 		broadcast(message);
 		LOGGER.info("One connection removed ["+user.getUserId()+"], Number of Online users:"+getOnlineCount());
 	}
@@ -130,7 +129,14 @@ public class WebSocketServer {
 	 */
 	@OnMessage
 	public void OnMessage(String message,Session session){
+		ClientMessage cm=ClientMessage.praseMessage(message);
+		if(cm.getType().equals(MessageType.TYPE_USER_INFO)){
+			user.setAvatar(cm.getAvatar());
+			message=new ServerMessage(MessageType.TYPE_SERVER, user, "add", onlineList).toJson();
+			
+		}
 		broadcast(message);
+		
 	}
 	
 	/**

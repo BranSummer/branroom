@@ -6,13 +6,14 @@ import java.util.Vector;
 
 import org.bran.branroom.base.BaseTest;
 import org.bran.branroom.entity.User;
+import org.bran.branroom.enums.MessageType;
 import org.junit.Test;
 
-public class ChatMessageTest extends BaseTest {
+public class ServerMessageTest extends BaseTest {
 
 	@Test
 	public void testToJson() {
-		ChatMessage cm=new ChatMessage(ChatMessage.TYPE_SYS, new User(), "test", new Vector<User>());
+		ServerMessage cm=new ServerMessage(MessageType.TYPE_SERVER, new User(), "test", new Vector<User>());
 		System.out.println(cm.toJson());
 	}
 

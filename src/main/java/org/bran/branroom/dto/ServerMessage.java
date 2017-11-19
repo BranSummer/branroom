@@ -4,44 +4,36 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import org.bran.branroom.entity.User;
+import org.bran.branroom.enums.MessageType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ChatMessage implements Serializable {
+public class ServerMessage implements Serializable {
 	@JsonIgnore
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 *   "-1"
-	 * system message 系统消息 
-	 */
-	@JsonIgnore
-	public static final String TYPE_SYS="-1";
 	
-	/**
-	 *     "0"
-	 * user chatting message 用户聊天消息 
-	 */
-	@JsonIgnore
-	public static final String TYPE_USER="0";
 	
-	private String type;
+	
+	
+	private MessageType type;
 	
 	private User user;
 	
 	private String content;
 	
 	private Vector<User> onlineList;
+	
 
 	
 
-	public String getType() {
+	public MessageType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(MessageType type) {
 		this.type = type;
 	}
 
@@ -69,7 +61,7 @@ public class ChatMessage implements Serializable {
 		this.onlineList = onlineList;
 	}
 
-	public ChatMessage(String type, User user, String content, Vector<User> onlineList) {
+	public ServerMessage(MessageType type, User user, String content, Vector<User> onlineList) {
 		super();
 		this.type = type;
 		this.user = user;
