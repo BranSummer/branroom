@@ -7,8 +7,6 @@
 		<package name="org.bran.branroom.entity"/>
 	</typeAliases>
 	
-	 <mappers>
-        <mapper class="org.bran.branroom.mapper.UserMapper"/>
-    </mappers>
+	 
 	
 </configuration>

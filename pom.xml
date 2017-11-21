@@ -59,7 +59,7 @@
 	</dependency>
 	
 	<!-- spring support -->
-	<!-- spring core -->
+		<!-- spring core -->
 	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
