@@ -1,8 +1,10 @@
 package org.bran.branroom.websocket;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.websocket.OnClose;
@@ -41,7 +43,9 @@ public class WebSocketServer {
 	
 	private static ConcurrentHashMap<User,Session> map=new ConcurrentHashMap<User,Session>();
 	
-	private static Vector<User> onlineList=new Vector<User>();
+	private static Set<User> onlineList=new ConcurrentSkipListSet<User>();
+	
+	private static Vector<User> onlineList1=new Vector<User>();
 	
 	private static final Logger LOGGER=LogManager.getLogger(WebSocketServer.class.getName());
 	

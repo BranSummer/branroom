@@ -1,6 +1,7 @@
 package org.bran.branroom.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 import java.util.Vector;
 
 import org.bran.branroom.entity.User;
@@ -24,7 +25,7 @@ public class ServerMessage implements Serializable {
 	
 	private String content;
 	
-	private Vector<User> onlineList;
+	private Set<User> onlineList;
 	
 
 	
@@ -53,15 +54,15 @@ public class ServerMessage implements Serializable {
 		this.content = content;
 	}
 
-	public Vector<User> getOnlineList() {
+	public Set<User> getOnlineList() {
 		return onlineList;
 	}
 
-	public void setOnlineList(Vector<User> onlineList) {
+	public void setOnlineList(Set<User> onlineList) {
 		this.onlineList = onlineList;
 	}
 
-	public ServerMessage(MessageType type, User user, String content, Vector<User> onlineList) {
+	public ServerMessage(MessageType type, User user, String content, Set<User> onlineList) {
 		super();
 		this.type = type;
 		this.user = user;
