@@ -26,3 +26,5 @@ This project is completed in my java web learning process, may be low and simple
 
 * 2017-11-12 15:28:56   
 Complete this document
+* 2017-11-24 14:11:49   
+Add emoji picker

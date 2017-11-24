@@ -30,6 +30,8 @@
     <mvc:resources location="/" mapping="/**/*.css"/>
 	<mvc:resources location="/" mapping="/**/*.jpg"/>
 	<mvc:resources location="/" mapping="/**/*.png"/>
+	<mvc:resources location="/" mapping="/**/*.map"/>
+	<mvc:resources location="/" mapping="/**/*.gif"/>
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>

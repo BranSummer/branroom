@@ -10,7 +10,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<jsp:include page="include/commonfiles.jsp"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="${path}/static/css/emoji.css" />
 		<title>Branroom</title>
 	</head>
 
@@ -41,7 +42,7 @@
 					
 					<!--textarea div-->
 					<div class="input-group" style="height: 250; width: 100%;">
-						<textarea name="input_area" id="input_area" placeholder="input here……" style="height: 200 ;width: 100%;resize: none;"  ></textarea>
+						<textarea name="input_area" id="input_area" placeholder="input here……" data-emojiable="true" data-emoji-input="unicode" style="height: 200 ;width: 100%;resize: none;"  ></textarea>
 					</div>
 					<div>
 						<button type="button" class="btn btn-primary" id="conBtn" data-loading-text="Loading..."  autocomplete="off">
@@ -74,6 +75,26 @@
 		
 		<!-- footer -->
 		<jsp:include page="include/footer.jsp"/>
+		
+		
+		<!--begin emoji-picker js-->
+		<script src="${path}/static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${path}/static/js/emoji-picker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${path}/static/js/jquery.emojiarea.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${path}/static/js/util.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				window.emojiPicker = new EmojiPicker({
+				  emojiable_selector: '[data-emojiable=true]',
+				  assetsPath: '${path}/static/img',
+				  popupButtonClasses: 'fa fa-smile-o'
+				});
+				
+				window.emojiPicker.discover();
+			})
+		</script>
+		<!--end emoji-picker js-->
 		
 		<!-- js -->
 			<script type="text/javascript">
