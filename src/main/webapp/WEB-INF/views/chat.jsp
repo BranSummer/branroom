@@ -170,6 +170,7 @@
 					document.getElementById("chat").innerHTML+="<div class='eachline'><img src='"+avatar+"' class='img-rounded image_you' height='40' width='40'/><div class='bubble you'>"+contents+"</div></div>";
 				chatDiv.scrollTop=chatDiv.scrollHeight;
 				$("#input_area").val("");
+				$(".emoji-wysiwyg-editor").html("");
 			}
 			//close websocket
 			function closeWebSocket(){
