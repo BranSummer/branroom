@@ -5,5 +5,6 @@
 
 <link rel="stylesheet" href="${path}/static/css/bootstrap.min.css">  
 <link rel="stylesheet" type="text/css" href="${path}/static/css/chat.css"/>
+<link rel="stylesheet" type="text/css" href="${path}/static/css/layout.css"/>
 <script src="${path}/static/js/jquery-3.1.1.min.js"></script>
 <script src="${path}/static/js/bootstrap.min.js"></script>
