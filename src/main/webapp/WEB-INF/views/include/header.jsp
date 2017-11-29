@@ -45,7 +45,7 @@
 				        <img alt="Brand" src="${path}/static/img/logo.png" height="55px"/>
 					</div>
 					<form class="navbar-form navbar-left from-inline" role="search">
-						<div class="form-group">
+						<div class="form-group pull-left">
 						    <input type="text" class="form-control" placeholder="Search">
 						</div>
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
