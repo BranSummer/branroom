@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bran.branroom.dao.WatchDao">
+	
+	<insert id="insert" parameterType="map" >
+		insert into watch(userId,wuser) 
+		values(#{userId,jdbcType=VARCHAR,javaType=String},#{wUser,jdbcType=VARCHAR,javaType=String})
+	</insert>
+	
+	<delete id="delete" parameterType="map" >
+		delete from watch 
+		where userid=#{userId ,javaType=String,jdbcType=VARCHAR} and wuser=#{wUser,javaType=String,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="queryFollowCount" resultType="Integer">
+		select count(*) from watch
+		where userId=#{userId}
+		
+	</select>
+	
+	<select id="queryWatchCount" resultType="int">
+		select count(*) 
+		from watch where wuser = #{wUser}
+	</select>
+	
+	<select id="queryFollowers" resultType="User">
+		select user.* from watch ,user
+		 where watch.userId=#{userId} and user.userId=watch.userId 
+	</select>
+	
+	<select id="queryWatchers" resultType="User">
+		select  user.* from
+		 watch,user where wUser=#{wUser} and user.userId=watch.wUser
+	</select>
+	
+	<sql id="getUser"></sql>
+</mapper>

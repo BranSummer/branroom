@@ -34,7 +34,7 @@ public class WatchDaoTest extends BaseTest {
 	
 	@Test
 	public void testQueryFollowers(){
-		System.out.println("start test QueryFollowers");
+		System.out.println("start test QueryFollowers()");
 		List<User> list=watchDao.queryFollowers("admin");
 		for(User item:list){
 			System.out.println("follower:"+item);

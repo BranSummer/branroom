@@ -6,7 +6,4 @@
 	<typeAliases>
 		<package name="org.bran.branroom.entity"/>
 	</typeAliases>
-	
-	 
-	
 </configuration>

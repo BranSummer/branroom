@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		select * from user
     </select>
    
-    <select id="queryByUserId" parameterType="String" resultType="User">
+    <select id="queryByUserId" resultType="User">
    		select * from user where userid=#{userId}
     </select>
 </mapper>
