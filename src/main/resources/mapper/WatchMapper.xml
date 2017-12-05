@@ -35,5 +35,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 watch,user where wUser=#{wUser} and user.userId=watch.wUser
 	</select>
 	
-	<sql id="getUser"></sql>
 </mapper>
