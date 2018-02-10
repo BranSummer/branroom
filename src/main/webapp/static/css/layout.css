@@ -3,6 +3,7 @@ html{
 }
 
 body{
+	padding-top: 70px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -12,6 +13,8 @@ header{
    /* 我们希望 header 采用固定的高度，只占用必须的空间 */
    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
    flex: 0 0 auto;
+   font-family: Georgia, "Times New Roman", Times, serif;
+   font-size: large;
 }
 
 .main-content{
@@ -25,7 +28,4 @@ footer{
    /* 和 header 一样，footer 也采用固定高度*/
    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
    flex: 0 0 auto;
-}
-.form-control-line{
-	display:inline;
 }
