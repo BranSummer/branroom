@@ -6,31 +6,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.bran.branroom.dao.UserDao">
 
 	<insert id="insert" parameterType="User">
-		insert into 
-			user
+		insert into
+		user
 		values(#{userId},#{password},#{gender},#{avatar},#{permission},#{email},#{introduction})
 	</insert>
-    
-    <update id="update" parameterType="User">
-    	update user set
-    	password=#{password},
-    	gender=#{gender},
-    	avatar=#{avatar},
-    	permission=#{permission},
-    	email=#{email},
-    	introduction=#{introduction}
-    	where userid=#{userId}
-    </update>
-    
-    <delete id="delete">
-    	delete from user where userid=#{userId}
-    </delete>
-    
-    <select id="queryAll" resultType="User">
-   		select * from user
-    </select>
-   
-    <select id="queryByUserId" resultType="User">
-   		select * from user where userid=#{userId}
-    </select>
+
+	<update id="update" parameterType="User">
+		update user set
+		password=#{password},
+		gender=#{gender},
+		avatar=#{avatar},
+		permission=#{permission},
+		email=#{email},
+		introduction=#{introduction}
+		where userid=#{userId}
+	</update>
+
+	<delete id="delete">
+		delete from user where userid=#{userId}
+	</delete>
+
+	<select id="queryAll" resultType="User">
+		select * from user
+	</select>
+
+	<select id="queryByUserId" resultType="User">
+		select * from user where
+		userid=#{userId}
+	</select>
 </mapper>

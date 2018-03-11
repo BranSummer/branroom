@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.bran.branroom.dao.BlogDao">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		insert into blog(title,author,content,posttime)
+		values(#{title},#{author},#{content},#{posttime})
+	</insert>
+	
+	<select id="queryBlogByAuthor">
+		select * from blog where author like %#{userid}%
+	</select>
+	
+	<select id="queryBlogByTitle">
+		select * from blog where title like %#{title}%
+	</select>
+	
+	<delete id="delete">
+		delete from blog where id=#{id}
+	</delete>
+	
+	<update id="update">
+		update blog set
+		title=#{title},
+		author=#{title},
+		content=#{content},
+		posttime=#{posttime}
+		where id={#id}
+	</update>
+</mapper>

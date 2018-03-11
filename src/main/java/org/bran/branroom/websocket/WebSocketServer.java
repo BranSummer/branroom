@@ -45,8 +45,6 @@ public class WebSocketServer {
 	
 	private static Set<User> onlineList=new ConcurrentSkipListSet<User>();
 	
-	private static Vector<User> onlineList1=new Vector<User>();
-	
 	private static final Logger LOGGER=LogManager.getLogger(WebSocketServer.class.getName());
 	
 	private static synchronized void addOnlineCount(){
