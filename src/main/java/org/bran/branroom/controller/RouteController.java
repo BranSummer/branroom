@@ -1,8 +1,11 @@
 package org.bran.branroom.controller;
 
+import org.bran.branroom.entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date: 2017/11/02 18:38:19
  */
 @Controller
+@SessionAttributes("user")
 public class RouteController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -30,7 +34,18 @@ public class RouteController {
 	}
 	
 	@RequestMapping(value = "/profile")
-	public String profile(){
+	public String profile(Model model){
+		User user=(User)model.asMap().get("user");
+		if(user.getUserId().equals("admin")||user.getUserId().equals("Kirkland")){
+			return "lovestory";
+		}
+		
 		return "profile";
+	}
+	
+	@RequestMapping(value = "/returnProfile")
+	public String returnProfile(){
+		return "profile";
+		
 	}
 }

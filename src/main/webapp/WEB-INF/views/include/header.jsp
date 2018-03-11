@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <header>
-	<nav class="navbar navbar-default navbar-inverse">
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 		<div class="container ">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">

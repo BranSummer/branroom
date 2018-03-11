@@ -8,3 +8,4 @@
 <link rel="stylesheet" type="text/css" href="${path}/static/css/layout.css"/>
 <script src="${path}/static/js/jquery-3.1.1.min.js"></script>
 <script src="${path}/static/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">

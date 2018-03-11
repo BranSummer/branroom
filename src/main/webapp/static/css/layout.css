@@ -3,7 +3,7 @@ html{
 }
 
 body{
-	padding-top: 70px;
+	padding-top: 70px; 
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -28,4 +28,17 @@ footer{
    /* 和 header 一样，footer 也采用固定高度*/
    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
    flex: 0 0 auto;
+   padding-bottom: 3rem!important;
+   padding-top: 3rem!important;
+}
+.nav-avatar{
+	height: 30px;
+	width: 30px;
+}
+.bg-dark{
+	background-color: #222;
+}
+.text-white{
+	color: #fff!important;
+
 }
