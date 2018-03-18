@@ -10,6 +10,10 @@ public interface BlogDao {
 	
 	List<Blog> queryBlogByTitle(String title);
 	
+	List<Blog> queryAll();
+	
+	Blog queryById(int id);
+	
 	void insert(Blog blog);
 	
 	void delete(Blog blog);

@@ -25,7 +25,7 @@
 						<a href="${path}/chat">Chat</a>
 					</li>
 					<li>
-						<a href="#">Blog</a>
+						<a href="${path}/blogEdit">Blog</a>
 					</li>
 
 				</ul>

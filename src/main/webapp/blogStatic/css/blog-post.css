@@ -1,0 +1,45 @@
+/*!
+ * Start Bootstrap - Blog Post (https://startbootstrap.com/template-overviews/blog-post)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-post/blob/master/LICENSE)
+ */
+html{
+    height: 100%;
+}
+
+
+body {
+  padding-top: 54px;
+  display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+header{
+   /* 我们希望 header 采用固定的高度，只占用必须的空间 */
+   /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 0 0 auto;
+   font-family: Georgia, "Times New Roman", Times, serif;
+   font-size: large;
+}
+
+.main-content{
+   /* 将 flex-grow 设置为1，该元素会占用全部可使用空间 
+      而其他元素该属性值为0，因此不会得到多余的空间*/
+   /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 1 0 auto;
+}
+
+footer{
+   /* 和 header 一样，footer 也采用固定高度*/
+   /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 0 0 auto;
+   padding-bottom: 3rem!important;
+   padding-top: 3rem!important;
+}

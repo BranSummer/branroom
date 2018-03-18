@@ -24,14 +24,15 @@
     
     <!--  static resources mapping 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/blogStatic/**" location="/blogStatic/"/>
 
-    <mvc:resources location="/" mapping="/**/*.html"/>
+  <!--   <mvc:resources location="/" mapping="/**/*.html"/>
     <mvc:resources location="/" mapping="/**/*.js"/>
     <mvc:resources location="/" mapping="/**/*.css"/>
 	<mvc:resources location="/" mapping="/**/*.jpg"/>
 	<mvc:resources location="/" mapping="/**/*.png"/>
 	<mvc:resources location="/" mapping="/**/*.map"/>
-	<mvc:resources location="/" mapping="/**/*.gif"/>
+	<mvc:resources location="/" mapping="/**/*.gif"/> -->
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>
@@ -41,6 +42,7 @@
 			<mvc:mapping path="/**"/>
 			<!-- 排除拦截的地址 -->
 			<mvc:exclude-mapping path="/static/**"/>
+			<mvc:exclude-mapping path="/blogStatic/**"/>
 			<bean id="LoginInterceptor" class="org.bran.branroom.interceptor.LoginInterceptor">
 				<property name="urlIgnore">
 					<list>

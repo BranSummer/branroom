@@ -36,9 +36,9 @@ public class RouteController {
 	@RequestMapping(value = "/profile")
 	public String profile(Model model){
 		User user=(User)model.asMap().get("user");
-		if(user.getUserId().equals("admin")||user.getUserId().equals("Kirkland")){
-			return "lovestory";
-		}
+//		if(user.getUserId().equals("admin")||user.getUserId().equals("Kirkland")){
+//			return "lovestory";
+//		}
 		
 		return "profile";
 	}
@@ -48,4 +48,6 @@ public class RouteController {
 		return "profile";
 		
 	}
+	
+
 }

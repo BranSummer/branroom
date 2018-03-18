@@ -105,7 +105,7 @@
 							}
 						},
 						error:function(XMLHttpRequest, textStatus, errorThrown){
-							alert("fail to access!");
+							
 						}
 					});
 				};

@@ -40,6 +40,6 @@
 		window.location.href='${path}/signOut';
 	});
 	$("#blog").click(function(){
-		window.location.herf='#';
+		window.location.herf='${path}/blogEdit';
 	})	
 </script>
