@@ -13,22 +13,21 @@
 		<title>Insert title here</title>
 	</head> 
 	
-	<body class="picUp">
+	<body>
 	
 		<!-- header -->
 		<%-- <%@ include file="include/header.jsp" %> --%>
 		<jsp:include page="include/header.jsp" flush="true"/>
 		
 		<!--sign up area-->
-		<div class="panel-body">
+		<div class="panel-body main-content">
 			<div class="container">
 				<div class="row">
 				  <div class="col-md-6 col-md-offset-1">
 				  	<div class="jumbotron">
-				  		<h1>hello world</h1>
+				  		<h1>Sad</h1>
 				  		<p>
-				  			There's no point in being no point in being grown up 
-				  			if you can't be childish sonetimes.  
+				  			When you got nothing,you got nothing to lose
 				  		</p>
 				  	</div>
 				  </div>

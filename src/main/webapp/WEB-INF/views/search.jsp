@@ -39,18 +39,18 @@
 							<br/>
 							<div class="panel">
 								<ul class="list-group" id="peopleList">
-									<jsp:include page="include/todo.jsp">
+									<jsp:include page="include/todo.jsp"/>
 								</ul>
 							</div>
 						</div>
 					</div>
 					
 					<div class="tab-pane " id="article">
-						<jsp:include page="include/todo.jsp">
+						<jsp:include page="include/todo.jsp"/>
 					</div>
 					
 					<div class="tab-pane " id="sources">
-						<jsp:include page="include/todo.jsp">
+						<jsp:include page="include/todo.jsp"/>
 					</div>
 				</div>			 
 			</div>

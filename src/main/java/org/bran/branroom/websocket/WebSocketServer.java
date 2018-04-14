@@ -2,11 +2,11 @@ package org.bran.branroom.websocket;
 
 import java.io.IOException;
 import java.util.Set;
-import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import javax.annotation.Resource;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -21,6 +21,8 @@ import org.bran.branroom.dto.ClientMessage;
 import org.bran.branroom.dto.ServerMessage;
 import org.bran.branroom.entity.User;
 import org.bran.branroom.enums.MessageType;
+import org.bran.branroom.service.RobotService;
+import org.bran.branroom.service.impl.RobotServiceImpl;
 
 
 /**
@@ -32,6 +34,8 @@ import org.bran.branroom.enums.MessageType;
  */
 @ServerEndpoint(value="/server/{userParam}")
 public class WebSocketServer {
+	
+	private static RobotService robotService=new RobotServiceImpl();
 	
 	private static int onlineCount=0;
 	
@@ -45,6 +49,7 @@ public class WebSocketServer {
 	
 	private static Set<User> onlineList=new ConcurrentSkipListSet<User>();
 	
+	//日志
 	private static final Logger LOGGER=LogManager.getLogger(WebSocketServer.class.getName());
 	
 	private static synchronized void addOnlineCount(){
@@ -58,6 +63,14 @@ public class WebSocketServer {
 	private static synchronized int getOnlineCount(){
 		return onlineCount;
 	}
+	//机器人
+	private static User turing=new User();
+	static{
+		turing.setAvatar("static/img/avatar007.jpg");
+		turing.setUserId("Turing");
+		onlineList.add(turing);
+	}
+			
 	
 	
 	//get the user through userId
@@ -138,6 +151,15 @@ public class WebSocketServer {
 			
 		}
 		broadcast(message);
+		if(cm.getType().equals(MessageType.TYPE_USER_CHAT)){
+			String robotReply=robotService.reply(cm.getContent(), cm.getUserid());
+			ClientMessage rcm=new ClientMessage();
+			rcm.setType(MessageType.TYPE_USER_CHAT);
+			rcm.setContent(robotReply);
+			rcm.setUserid("Turing");
+			rcm.setAvatar("static/img/avatar007.jpg");
+			broadcast(rcm.toJson());
+		}
 		
 	}
 	

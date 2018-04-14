@@ -20,21 +20,22 @@ public class BlogDaoTest extends BaseTest {
 	public void initial(){
 		b.setAuthor("admin");
 		b.setContent("hello world,this is a simple content !");
-		b.setTitle("first blog");
+		b.setTitle("blog insert test");
 		LocalDateTime time=LocalDateTime.now();
-		b.setPostTime(time);
+		b.setPosttime(time);
 	}
 	
-//	@Test
+	@Test
 	public void testInsert(){
-		blogDao.insert(b);
+		boolean tag=blogDao.insert(b);
+		System.out.println(tag+"");
 	}
 	
 	@Test
 	public void testQueryByAuthor(){
 		List<Blog> list=blogDao.queryBlogByAuthor("ad");
 		for(Blog b:list){
-			System.out.println(b.getId()+","+b.getAuthor()+","+b.getPostTime());
+			System.out.println(b.getId()+","+b.getAuthor()+","+b.getPosttime());
 		}
 	}
 

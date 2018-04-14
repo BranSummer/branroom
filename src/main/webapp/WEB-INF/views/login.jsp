@@ -31,13 +31,13 @@
 		<title>Branroom</title>
 	</head>
 	
-	<body class="picUp">
+	<body>
 		<!-- header -->
 		<%-- <%@ include file="include/header.jsp" %> --%>
 		<jsp:include page="include/header.jsp" flush="true"/>
 		
 		<!--login area-->                                                                                                      
-			<div class="panel-body">
+			<div class="panel-body main-content">
 				<h3 align="center">Sign in to Bran's room</h3>
 				<div class="container">
 					<div class="row">

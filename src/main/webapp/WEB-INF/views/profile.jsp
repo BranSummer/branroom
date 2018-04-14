@@ -18,7 +18,7 @@
 		<jsp:include page="include/header.jsp"/>
 			
 		<!-- mid -->
-		<div class="container panel-body">
+		<div class="container panel-body main-content">
 			<div class="row">
 	
 				<!-- sidebar -->

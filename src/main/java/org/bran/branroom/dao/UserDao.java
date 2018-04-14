@@ -10,9 +10,9 @@ public interface UserDao {
 	
 	List<User> queryAll();
 	
-	void update(User user);
+	boolean update(User user);
 	
-	void insert(User user);
+	boolean insert(User user);
 	
-	void delete(User user);
+	boolean delete(User user);
 }

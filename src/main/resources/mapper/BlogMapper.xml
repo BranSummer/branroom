@@ -21,6 +21,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from blog where id=#{id}
 	</select>
 	
+	<select id="queryCountByAuthor" resultType="Integer">
+		select count(id) from blog where author = #{author}
+	</select>
+	
+	<select id="queryBlogByAuthorOnPage" parameterType="Map" resultType="Blog">
+		select * from blog 
+		<if test="offset!=null and limit!=null">
+		limit #{offset} , #{limit}
+		</if>
+		where author = #{author}
+	</select>
+	
 	<select id="queryAll" resultType="Blog">
 		select * from blog
 	</select>

@@ -9,10 +9,10 @@ public class Blog {
 	private String content;
 	private LocalDateTime posttime;
 	
-	public LocalDateTime getPostTime() {
+	public LocalDateTime getPosttime() {
 		return posttime;
 	}
-	public void setPostTime(LocalDateTime postTime) {
+	public void setPosttime(LocalDateTime postTime) {
 		this.posttime = postTime;
 	}
 	public int getId() {

@@ -25,7 +25,7 @@
 						<a href="${path}/chat">Chat</a>
 					</li>
 					<li>
-						<a href="${path}/blogEdit">Blog</a>
+						<a href="${path}/blogHome">Blog</a>
 					</li>
 
 				</ul>
@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default" id="searchBtn">Submit</button>
 				</form>
 				<c:if test="${not empty user}" >
 					<ul class="nav navbar-nav navbar-right">
@@ -62,4 +62,9 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+	<script type="text/javascript">
+		$("#seearchBtn").click(function(){
+			window.location.href='${path}/searchPage';
+		});
+	</script>
 </header>

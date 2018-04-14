@@ -19,7 +19,7 @@ public class Result {
 	
 	private String message;
 
-	
+	private Object umessage;
 	
 	public Result() {
 		super();
@@ -48,6 +48,16 @@ public class Result {
 	}
 	
 	
+	
+	
+	public Object getUmessage() {
+		return umessage;
+	}
+
+	public void setUmessage(Object umessage) {
+		this.umessage = umessage;
+	}
+
 	public String toJson(){
 		String json=null;
 		ObjectMapper mapper=new ObjectMapper();

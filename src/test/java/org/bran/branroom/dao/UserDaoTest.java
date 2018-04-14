@@ -46,7 +46,8 @@ public class UserDaoTest extends BaseTest {
 	@Test
 	public void testInsert(){
 		System.out.println("————testInsert————");
-		userDao.insert(testUser);
+		boolean tag=userDao.insert(testUser);
+		System.out.println(tag);
 		List<User> list=userDao.queryAll();
 		for(User item:list){
 			System.out.println(item.getUserId()+","+item.getPassword());

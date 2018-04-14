@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes("user")
 public class RouteController {
+	@RequestMapping(value="/blogHome")
+	public String blogHomePage(){
+		return "/blog/blogHome";
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(){
@@ -32,6 +36,7 @@ public class RouteController {
 	public String chatPage(){
 		return "chat";
 	}
+	
 	
 	@RequestMapping(value = "/profile")
 	public String profile(Model model){
@@ -49,5 +54,9 @@ public class RouteController {
 		
 	}
 	
+	@RequestMapping(value ="/searchPage")
+	public String searchPage(){
+		return "search";
+	}
 
 }
