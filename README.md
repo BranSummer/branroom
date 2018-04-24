@@ -1,6 +1,6 @@
 # Branroom
-
-[![Build Status](https://travis-ci.org/BranSummer/branroom.svg?branch=master)](https://travis-ci.org/BranSummer/branroom)
+[^_^]:
+    [![Build Status](https://travis-ci.org/BranSummer/branroom.svg?branch=master)](https://travis-ci.org/BranSummer/branroom)
 
 ## Instruction
 This is a simple online chat site example, based on Websocket implementation, with basic user management capabilities.  
