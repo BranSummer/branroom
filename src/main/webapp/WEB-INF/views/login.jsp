@@ -67,7 +67,7 @@
 						<br/>
 						<div class="panel panel-default">
 						  <div class="panel-body">
-						    <a href="${path}/signUpPage">Create an account</a> or <a href="#">Visit as no one</a>
+						    <a href="${path}/signUpPage">Create an account</a> or <a href="${path}/blogHome">Visit Blog</a>
 						  </div>
 						</div>
 					  </div>

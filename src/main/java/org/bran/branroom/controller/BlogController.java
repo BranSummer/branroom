@@ -25,6 +25,7 @@ public class BlogController {
 	@Resource
 	BlogService blogService;
 	
+	//导向个人主页
 	@RequestMapping(value="/blogPersonal/{author}")
 	public ModelAndView blogPersonalPage(@PathVariable("author") String author){
 		int blogCount =blogService.getCountByAuthor(author);
@@ -32,18 +33,30 @@ public class BlogController {
 		
 	}
 	
+	//个人主页获取分页预览blog内容
 	@RequestMapping(value="/fetchBlogList/{author}",method=RequestMethod.POST,produces="application/json; charset=utf-8")
 	@ResponseBody //若无此注解,则返回  HTTP Status 405 - Request method 'GET' not supported
 	public String fetchBlogList(@PathVariable("author")String author,@RequestParam("offset")Integer offset,@RequestParam("size")Integer size){
+		
 		Result result=blogService.getBlogsByAuthorByPage(author, offset, size);
 		return result.toJson();		
 	}
 	
+	//在blog首页获取预览blog内容
+	@RequestMapping(value="/fetchBlogs",method=RequestMethod.GET,produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String fetchBlogs(){
+		Result result=blogService.getBlogsByPage(0, 10);
+		return result.toJson();
+	}
+	
+	//导向{blogid}指定的blog展示页面
 	@RequestMapping(value="/blogPostPage/{blogid}")
 	public ModelAndView blogPostPage(@PathVariable("blogid") Integer blogid){
 		return new ModelAndView("/blog/blogpost","blogid",blogid);
 	}
 	
+	//在blog展示页面获取blog内容
 	@RequestMapping(value="/fetchblog/{blogid}",method=RequestMethod.GET,produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String fetchBlog(@PathVariable("blogid") Integer blogid){
@@ -51,13 +64,14 @@ public class BlogController {
 		return response.toJson();
 	}
 	
+	//导向blog编辑页面
 	@RequestMapping(value="/blogEdit")
 	public String blogEditPage(){
 		return "/blog/blogedit";
 	}
 	
 	
-	
+	//提交文章
 	@RequestMapping(value="/submitBlog",method=RequestMethod.POST,produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String submitBlog(@RequestParam("title")String title,@RequestParam("content")String content,Model model){

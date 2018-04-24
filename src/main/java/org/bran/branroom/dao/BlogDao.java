@@ -11,7 +11,7 @@ public interface BlogDao {
 	
 	List<Blog> queryBlogByTitle(String title);
 	
-	List<Blog> queryBlogByAuthorOnPage(Map<String,Object> map);
+	List<Blog> queryBlogByPage(Map<String,Object> map);
 	
 	int queryCountByAuthor(String author);
 	

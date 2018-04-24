@@ -23,7 +23,7 @@ public class LoginController {
 	@Resource
 	private LoginService loginService;
 	
-	
+	//获取登录信息并返回登陆结果
 	@RequestMapping(value="/signIn",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
 	public String signIn(@RequestParam("userid")String userId, @RequestParam("pwd")String password, 
@@ -45,7 +45,7 @@ public class LoginController {
 		return result.toJson();
 	}
 	
-	
+	//登出网页服务端
 	@RequestMapping(value="/signOut")
 	public String signUp(SessionStatus sessionStatus){
 		sessionStatus.setComplete();

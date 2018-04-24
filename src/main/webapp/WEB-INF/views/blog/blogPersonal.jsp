@@ -1,42 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<title>Bran Blog</title>
+<title>Bran Blog</title>
 
-		<!-- Bootstrap core CSS -->
-		<link href="${path}/blogStatic/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="${path}/blogStatic/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-		<!-- Custom styles for this template -->
-		<link href="${path}/blogStatic/css/blog-post.css" rel="stylesheet">
-		<title>Bran blog</title>
-	</head>
-	
-	<body>
-		<!-- Navigation -->
-		<jsp:include page="bloginclude/blognav.jsp"/>
-		
-		<!-- Page Content -->
-		<div class="container main-content">
+<!-- Custom styles for this template -->
+<link href="${path}/blogStatic/css/blog-post.css" rel="stylesheet">
+<title>Bran blog</title>
+</head>
 
-			<div class="row">
+<body>
+	<!-- Navigation -->
+	<jsp:include page="bloginclude/blognav.jsp" />
 
-				<!-- Post Content Column -->
-				<div class="col-lg-8">
+	<!-- Page Content -->
+	<div class="container main-content">
 
-					<h1 class="my-4">Bran
-		            	<small>'s Blog</small>
-		         	 </h1>
+		<div class="row">
 
-					<!-- Blog Post -->
-					<!--<div class="card mb-4">
+			<!-- Post Content Column -->
+			<div class="col-lg-8">
+
+				<h1 class="my-4">
+					Bran <small>'s Blog</small>
+				</h1>
+
+				<!-- Blog Post -->
+				<!--<div class="card mb-4">
 						<img class="card-img-top" src="https://source.unsplash.com/random/750x150?文章" alt="Card image cap" height="150" />
 						<div class="card-body">
 							<h2 class="card-title">Post Title</h2>
@@ -48,24 +50,24 @@
 							<a href="#">Start Bootstrap</a>
 						</div>
 					</div>-->
-					<div id="blog-palce">
-						
-					</div>
-					
-					
-					<!-- Pagination -->
-					<ul class="pagination justify-content-center mb-4" id="pageLink">
-						<li class="page-item">
-							<a class="page-link" href="#">&larr; Older</a>
-						</li>
-						<li class="page-item disabled">
-							<a class="page-link" href="#">Newer &rarr;</a>
-						</li>
-					</ul>
+				<div id="blog-palce"></div>
 
-				</div>
 
-				<!-- Sidebar Widgets Column -->
+				<!-- Pagination -->
+				<ul class="pagination justify-content-center mb-4" id="pageLink">
+					<li class="page-item disabled" id="older">
+						<button class="page-link" onclick="goToPrePage()">&larr;
+							Prev</button>
+					</li>
+					<li class="page-item disabled" id="newer">
+						<button class="page-link" onclick="goToNextPage()">Next
+							&rarr;</button>
+					</li>
+				</ul>
+
+			</div>
+
+			<!-- Sidebar Widgets Column -->
 			<div class="col-md-4">
 
 				<!-- Search Widget -->
@@ -130,20 +132,22 @@
 			</div>
 
 		</div>
-			<!-- /.row -->
+		<!-- /.row -->
 
-		</div>
-		<!-- /.container -->
+	</div>
+	<!-- /.container -->
 
-		<!-- Footer -->
-			<!-- Footer -->
-		<jsp:include page="bloginclude/blogfoot.jsp"/>
-		
-		<!-- Bootstrap core JavaScript -->
-		<script src="${path}/blogStatic/vendor/jquery/jquery.min.js"></script>
-		<script src="${path}/blogStatic/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="${path}/blogStatic/vendor/marked.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
+	<!-- Footer -->
+	<!-- Footer -->
+	<jsp:include page="bloginclude/blogfoot.jsp" />
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="${path}/blogStatic/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="${path}/blogStatic/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${path}/blogStatic/vendor/marked.min.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
 			function generateDate(d){
 				var time=d.month+" "+d.dayOfMonth+","+d.year;
 				return time;
@@ -219,23 +223,36 @@
 				});
 			}
 		</script>
-		
-		<script type="text/javascript">
+
+	<script type="text/javascript">
 			var itemCount=${count}; //符合查找条件的商品总页数，分页参考
 			var pageIndex = 0; //当前页，默认为0
-			var pageSize = 5; //每页显示个数为8
-			var pageNum=itemCount/pageSize+1;
+			var pageSize = 4; //每页显示个数		
+			var pageNum=itemCount/pageSize+1;  //总页数
+			var offset=pageSize*pageIndex;
 			//按条件查找用户
 			function searchItem(pageIndex, pageSize) {
 				//清空要append的目的位置
 				$("#blog-palce").empty();
+				//判断跳页按钮可用性
+				if(pageIndex<pageNum){
+					$("#newer").attr("class","page-item");
+				}else{
+					$("#newer").attr("class","page-item disabled");
+				}
+				if(pageIndex>0){
+					$("#older").attr("class","page-item");
+				}else{
+					$("#older").attr("class","page-item disabled");
+				}
+				//请求
 				$.ajax({
 					type:"post",
 					url:"${path}/fetchBlogList/${author}",
 					async:true,
 					dataType:"json",
 					data:{
-						"offset":pageIndex,
+						"offset":offset,
 						"size":pageSize
 					},
 					success:function(json){
@@ -250,30 +267,37 @@
 			//首页
 			function goToFirstPage(){　　
 				pageIndex = 0;　　
-				searchItem(pageIndex, pageSize);
+				searchItem(offset, pageSize);
 			}
 
 			//前一页
 			function goToPrePage() {　　
-				pageIndex -= 1;　　
-				pageIndex = pageIndex >= 0 ? pageIndex : 0;　　
-				searchItem(pageIndex, pageSize);
+				if(pageIndex>0){
+					pageIndex=pageIndex-1;　　
+					offset=pageIndex*pageSize;
+					searchItem(offset, pageSize);
+				}
+			
 			}
 
 			//后一页
 			function goToNextPage() {　　
-				if(pageIndex + 1 < itemCount) {　　　　
-					pageIndex += 1;　　
-				}　　
-				searchItem(pageIndex, pageSize);
+				if(pageIndex<pageNum-1){
+					pageIndex=pageIndex+1;
+					offset=pageIndex*pageSize;
+					searchItem(offset,pageSize)
+				}
+				
 			}
 			//尾页
 			function goToEndPage() {　　
 				pageIndex = itemCount - 1;　　
-				searchItem(pageIndex, pageSize);
+				searchItem(offset, pageSize);
 			}
 			
+			
 			goToFirstPage();
+			
 		</script>
-	</body>
+</body>
 </html>

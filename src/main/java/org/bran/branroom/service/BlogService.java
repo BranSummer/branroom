@@ -24,4 +24,6 @@ public interface BlogService {
 	List<Blog> getAllBlogs();
 	
 	Result getBlogsByAuthorByPage(String author,int offset,int size);
+	
+	Result getBlogsByPage(int offset,int size);
 }

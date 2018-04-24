@@ -11,7 +11,7 @@ id="WebApp_ID" version="3.0">
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>/</welcome-file>
   </welcome-file-list>
   
   <!-- Spring ContextLoaderListener -->

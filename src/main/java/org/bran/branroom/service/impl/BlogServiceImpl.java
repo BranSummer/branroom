@@ -84,7 +84,7 @@ public class BlogServiceImpl implements BlogService {
 		map.put("author", author);
 		map.put("offset", offset);
 		map.put("size", size);
-		List<Blog> list=blogDao.queryBlogByAuthorOnPage(map);
+		List<Blog> list=blogDao.queryBlogByPage(map);
 		List<PreviewBlog> listResult=new ArrayList<PreviewBlog>();
 		for(Blog b:list){
 			PreviewBlog pb=new PreviewBlog(b);
@@ -92,6 +92,23 @@ public class BlogServiceImpl implements BlogService {
 		}
 		Result result=new Result(Result.SUCCESS, "query");
 		result.setUmessage(listResult);
+		return result;
+	}
+
+	@Override
+	public Result getBlogsByPage(int offset, int size) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("offset", offset);
+		map.put("size", size);
+		List<Blog> list=blogDao.queryBlogByPage(map);
+		List<PreviewBlog> listResult=new ArrayList<PreviewBlog>();
+		for(Blog b:list){
+			PreviewBlog pb=new PreviewBlog(b);
+			listResult.add(pb);
+		}
+		Result result=new Result(Result.SUCCESS, "query");
+		result.setUmessage(listResult);
+		
 		return result;
 	}
 

@@ -25,9 +25,10 @@
 				<div class="row">
 				  <div class="col-md-6 col-md-offset-1">
 				  	<div class="jumbotron">
-				  		<h1>Sad</h1>
+				  		<h1>Welcome to Branroom</h1>
 				  		<p>
-				  			When you got nothing,you got nothing to lose
+				  			Here is my small site just for fun ;You can chat with other people online or post your own blogs here .
+				  
 				  		</p>
 				  	</div>
 				  </div>
@@ -69,7 +70,7 @@
 					<br/>
 					<div class="panel panel-default">
 					  <div class="panel-body">
-					    <a href="${path}/login">Sign in</a> or <a href="#">Visit as no one</a>
+					    <a href="${path}/login">Sign in</a> or <a href="${path}/blogHome">Visit Blog</a>
 					  </div>
 					</div>
 				  </div>

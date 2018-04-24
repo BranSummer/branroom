@@ -1,6 +1,7 @@
 package org.bran.branroom.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Blog {
 	private int id;
@@ -8,6 +9,7 @@ public class Blog {
 	private String author;
 	private String content;
 	private LocalDateTime posttime;
+	private List<String> keywords;
 	
 	public LocalDateTime getPosttime() {
 		return posttime;
@@ -38,12 +40,13 @@ public class Blog {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}	
+	public List<String> getKeywords() {
+		return keywords;
 	}
-
+	public void setKeywords(List<String> keywords) {
+		this.keywords = keywords;
+	}
 	
-	public static void main(String[] args) {
-		LocalDateTime t=LocalDateTime.now();
-		System.out.println(t);
-	}
 	
 }

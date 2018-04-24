@@ -23,10 +23,25 @@
 		
 		<div class="container main-content">
 			<br>
-			<div class="input-group input-group-lg">
-			  <span class="input-group-text " id="sizing-addon1">Title</span>
-			  <input type="text" class="form-control" placeholder="Better late than never" aria-describedby="sizing-addon1" id="title"/>
+			<div class="row">
+				<div class="col-7">
+					<div class="input-group input-group-lg">
+					  <span class="input-group-text " id="sizing-addon1">Title</span>
+					  <input type="text" class="form-control" placeholder="Better late than never" aria-describedby="sizing-addon1" id="title"/>
+					</div>
+				</div>
+				
+				<div class="col-5">
+					<div class="input-group input-group-prepend">
+					  <span class="input-group-text " id="sizing-addon1">Keywords</span>
+					  <input type="text" class="form-control" placeholder="以 , 分隔多个关键词" aria-describedby="sizing-addon1" id="keywords"/>
+					</div>
+				</div>
 			</div>
+			
+			
+			
+			
 			<br>
 			
 			<div id="editormd">
@@ -67,6 +82,7 @@
 		    function submitBlog(){
 		    	var content=$(".editormd-markdown-textarea").attr("name","content").html();
 		    	var title=$("#title").val();
+		    	var keywords=$("#keywords").val();
 		    	$.ajax({
 		    		type:"post",
 		    		url:"${path}/submitBlog",
@@ -74,11 +90,13 @@
 		    		dataType:"json",
 		    		data:{
 		    			"title":title,
-		    			"content":content
+		    			"content":content,
+		    			"keywords":keywords
 		    		},
 		    		success:function(json){
 						if(json.status=="1"){
 							alert("success");
+							window.location.href="${path}/blogPersonal/${user.userId}";
 						}else{
 							alert(json.message);
 						}

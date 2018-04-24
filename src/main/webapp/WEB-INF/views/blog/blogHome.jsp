@@ -49,7 +49,13 @@
 					<li class="nav-item"><a class="nav-link"
 						href="${path}/profile">主页</a></li>
 					<li class="nav-item"><a class="nav-link" href="${path}/blogEdit">写文章</a></li>
-					<li class="nav-item"><a class="nav-link" href="${path}/blogPersonal/${user.userId}">我的主页</a></li>
+					<c:if test="${not empty user}">
+						<li class="nav-item"><a class="nav-link" href="${path}/blogPersonal/${user.userId}">我的主页</a></li>
+					</c:if>
+					<c:if test="${empty user}" >
+						<li class="nav-item"><a class="nav-link" href="${path}/login">我的主页</a></li>
+					</c:if>
+					
 					<li class="nav-item"><a class="nav-link" href="${path}/searchPage">发现</a></li>
 				</ul>
 			</div>
@@ -137,7 +143,7 @@
 				previewDiv.addClass('post-preview');
 
 				var link1 = $('<a></a>');
-				var a1 = '/blogPost/' + m.author + '/' + m.id;
+				var a1 = '/branroom/blogPostPage/'+ m.id;
 				link1.attr('href', a1);
 				previewDiv.append(link1);
 				var titleDiv = $('<h2></h2>');
@@ -145,12 +151,12 @@
 				titleDiv.text(m.title);
 				var subtitleDiv = $('<h3></h3>');
 				subtitleDiv.addClass('post-subtitle');
-				subtitleDiv.text(m.subtitle);
+				subtitleDiv.text(m.pretext);
 				link1.append(titleDiv);
 				link1.append(subtitleDiv);
 
 				var link2 = $('<a></a>');
-				a2 = '/homePage/' + m.author;
+				a2 = '/branroom/blogPersonal/' + m.author;
 				link2.attr('href', a2);
 				link2.text(m.author);
 				var doc = $('<p></p>');
@@ -161,8 +167,8 @@
 				postMetaDiv.append(metaData);
 				previewDiv.append(postMetaDiv);
 
-				$("
-				#preview").append(previewDiv);
+				
+				$("#preview").append(previewDiv);
 				$("#preview").append("<hr>")
 			}
 			
@@ -180,7 +186,21 @@
 				$("#preview").append(btnDiv);
 			}
 			
-			
+			function initialPage(){
+				$("#preview").empty();
+				$.ajax({
+					type:"get",
+					url:"${path}/fetchBlogs",
+					async:true,
+					dataType:"json",
+					success:function(json){
+						if(json.status=='1'){
+							addAll(json.umessage);
+						}
+					}
+				});
+			}
+			initialPage();
 		</script>
 </body>
 

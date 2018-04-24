@@ -27,6 +27,7 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
+	//获取头像相对路径修改头像并返回结果
 	@RequestMapping(value="/chageAvatar",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
 	public String chageAvatar(@RequestParam("avatar")String avatar,Model model){
@@ -37,6 +38,7 @@ public class UserController {
 		return new Result(Result.SUCCESS,"success").toJson();
 	}
 	
+	//获取个人信息并更改信息
 	@RequestMapping(value="/updateInfo",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
 	public String updateInfo(@RequestParam("email")String email,@RequestParam("introduction")String introduction,Model model){
@@ -48,6 +50,7 @@ public class UserController {
 		return new Result(Result.SUCCESS,"success").toJson();
 	}
 	
+	//重置密码
 	@RequestMapping(value="/resetPwd",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
 	public String resetPwd(@RequestParam("password")String password,Model model){

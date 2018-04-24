@@ -29,7 +29,7 @@
 				<!--chat div-->
 				<div class="col-md-7">
 					<div class="panel panel-default">
-					  <div class="panel-heading">...</div>
+					  <div class="panel-heading">Turing是机器人哦 ,是个男孩子!</div>
 					  <div class="panel-body">
 					   	<div class="mychat-div" id="chat_scroll">
 						<div class="chat" id="chat">

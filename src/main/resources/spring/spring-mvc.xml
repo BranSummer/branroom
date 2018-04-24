@@ -46,11 +46,21 @@
 			<bean id="LoginInterceptor" class="org.bran.branroom.interceptor.LoginInterceptor">
 				<property name="urlIgnore">
 					<list>
+						<!-- 注册登录页面 -->
 						<value>/signIn</value>
 						<value>/login</value>
 						<value>/signUpPage</value>
 						<value>/check</value>
 						<value>/signUp</value>
+						<!-- blog首页 -->
+						<value>/blogHome</value>
+						<value>/fetchBlogs</value>
+						<!-- blog展示页面 正则 -->
+						<value>.*/blogPostPage/\d+</value>
+						<value>.*/fetchblog/\d+</value>
+						<!-- blog个人页面  正则-->
+						<!-- <value>.*/blogPersonal/.+</value>
+						<value>.*/fetchBlogList/.+</value> -->
 					</list>
 				</property>
 			</bean>

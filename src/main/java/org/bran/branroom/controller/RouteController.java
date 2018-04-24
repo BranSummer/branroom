@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes("user")
 public class RouteController {
+	
+	@RequestMapping(value="/")
+	public String index(){
+		return "redirect:/blogHome";
+	}
+	
 	@RequestMapping(value="/blogHome")
 	public String blogHomePage(){
 		return "/blog/blogHome";

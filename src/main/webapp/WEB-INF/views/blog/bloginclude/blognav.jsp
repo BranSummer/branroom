@@ -17,7 +17,13 @@
 					<a class="nav-link" href="${path}/profile">主页<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item"><a class="nav-link"href="${path }/blogEdit">写文章</a></li>
-				<li class="nav-item"><a class="nav-link"href="${path}/blogPersonal/${user.userId}">我的主页</a></li>
+				<c:if test="${not empty user}" >
+					<li class="nav-item"><a class="nav-link"href="${path}/blogPersonal/${user.userId}">我的主页</a></li>
+				</c:if>
+				
+				<c:if test="${empty user}" >
+					<li class="nav-item"><a class="nav-link"href="${path}/login">我的主页</a></li>
+				</c:if>
 				<li class="nav-item"><a class="nav-link" href="${path}/searchPage">发现</a></li>
 			</ul>
 		</div>

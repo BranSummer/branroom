@@ -1,6 +1,7 @@
 package org.bran.branroom.interceptor;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,9 +39,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String requestUrl=request.getRequestURI();
-		
 		for(String url:urlIgnore){
-			if(requestUrl.indexOf(url)>0){
+			if(requestUrl.indexOf(url)>0||Pattern.matches(url, requestUrl)){
 				return true;
 			}
 		}

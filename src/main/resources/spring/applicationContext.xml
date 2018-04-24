@@ -17,20 +17,7 @@
     </context:component-scan>
 	
 	<!-- mybatis set up -->
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
-        <property name="driverClassName">  
-            <value>com.mysql.jdbc.Driver</value>  
-        </property>  
-        <property name="url">  
-            <value>jdbc:mysql://localhost:3306/branbase?characterEncoding=UTF-8</value>  
-        </property>  
-        <property name="username">  
-            <value>root</value>  
-        </property>  
-        <property name="password">  
-            <value>123456</value>  
-        </property>   
-   </bean> -->
+
    <!-- 1.配置数据库相关参数properties的属性：${url} -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	
@@ -51,6 +38,8 @@
 		<property name="checkoutTimeout" value="10000" />
 		<!-- 当获取连接失败重试次数 -->
 		<property name="acquireRetryAttempts" value="2" />
+		<!-- 连接最大空闲时间 -->
+		<property name="maxIdleTime" value="10800" />
 	</bean>
    
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
