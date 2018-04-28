@@ -19,9 +19,10 @@ This project is completed in my java web learning process, may be low and simple
 * 用户模块 :
 其实用户系统对于个人网站来说是一块鸡肋,大多数的个人网站目前来说很少有用户功能的 , 毕竟很少有人会为了看几篇文章而专门为了一个小网站而去注册用户的 , 这样会损失很多的网站流量 , 得不偿失 . 然而我建设网站的初衷毕竟是为了学习,而且此网站**并非是个人博客网站,而是一个博客平台** , 是面向用户发布博客的,而且另外一个在线聊天系统也需要依托用户系统的实现 , 因此用户模块是必要的 .
 * 博客模块 : 博客模块的重点在于前端实现 , 现阶段后台对于blog的处理还只是简单的CURD(今后会添加更多的功能和实现性能上的优化) , blog模块实现了网站的前后台分离 , 客户端通过ajax发起请求 , 服务端接受请求并返回json格式的报文 , 有客户端渲染生成页面 . blog的前台主要应用bootstarp,jquery等框架实现 , 特别地,网站blog支持markdown文档编写,主要应用了editor.md这个插件.
-* 在线聊天模块 : 对我来说,这个模块是独立于其他的web模块的,因为在线聊天是基于websocket来实现的 , websocket是独立于HTTP之外的TCP协议 . 在这个模块之中 , 接入一个图灵机器人的API , 做成了一个与可以机器人对话的窗口 .
+* 在线聊天模块 :这个模块是独立于其他的web模块的,因为在线聊天是基于websocket来实现的 , websocket是独立于HTTP之外的TCP协议 . 在这个模块之中 , 接入一个图灵机器人的API , 做成了一个与可以机器人对话的窗口 .
 ## 技术架构
 
+### 
 ### 运行流程分析
 以加载一个blog页面为例  
 
@@ -33,9 +34,25 @@ This project is completed in my java web learning process, may be low and simple
 6.   View——>渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；
 7.   返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。
 
+## Web View
+### profile page
+![](https://github.com/BranSummer/Resources/blob/master/branroom/webview1.jpg)
+
+### chat page
+![](https://github.com/BranSummer/Resources/blob/master/branroom/webview2.jpg)
+
+### blog post
+![](https://github.com/BranSummer/Resources/blob/master/branroom/webviewBlog1.jpg)
+
+### blog home
+![](https://github.com/BranSummer/Resources/blob/master/branroom/webviewBlog2.jpg)
+
 ## Update History
 
 * 2017-11-12 15:28:56   
 Complete this document
 * 2017-11-24 14:11:49   
 Add emoji picker
+* 2018-4-27 21:56:34   
+add blog module(supoting markdown)  
+call turing robot API on chatting module
