@@ -22,7 +22,8 @@ This project is completed in my java web learning process, may be low and simple
 * 在线聊天模块 :这个模块是独立于其他的web模块的,因为在线聊天是基于websocket来实现的 , websocket是独立于HTTP之外的TCP协议 . 在这个模块之中 , 接入一个图灵机器人的API , 做成了一个与可以机器人对话的窗口 .
 ## 技术架构
 
-### 
+### 项目架构图
+![](https://github.com/BranSummer/Resources/blob/master/branroom/branrooma%E6%9E%B6%E6%9E%84.png)
 ### 运行流程分析
 以加载一个blog页面为例  
 
