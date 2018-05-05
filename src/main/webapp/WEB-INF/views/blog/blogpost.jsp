@@ -57,7 +57,7 @@
 
 				<!-- Post Content -->
 				<div id="blog-content">
-					<textarea style="display: none;" name="test-editormd-markdown-doc"></textarea>
+					<textarea id="blog-md" style="display: none;" name="test-editormd-markdown-doc"></textarea>
 				</div>
 
 				<hr>
@@ -216,14 +216,14 @@
 			$("#blog-title").html(m.title);
 			$("#blog-author").html(m.author);
 			$("#blog-posttime").html(generateDate(m.posttime));
-			$("#blog-content").html(markdownRender(m.content));
+			$("#blog-md").html(m.content);
 		}
 		function generateDate(d) {
 			var time = d.month + " " + d.dayOfMonth + "," + d.year;
 			return time;
 		}
 
-		function fetch() {
+		function load() {
 			$.ajax({
 				type : "get",
 				url : "${path}/fetchblog/${blogid}",
@@ -232,6 +232,7 @@
 				success : function(json) {
 					if (json.status == "1") {
 						render(json.umessage);
+						markdownRender();
 					} else {
 						alert(json.message);
 					}
@@ -239,10 +240,10 @@
 			});
 		}
 
-		function markdownRender(markdown) {
+		function markdownRender() {
 			var EditormdView = testEditormdView = editormd.markdownToHTML(
 					"blog-content", {
-						markdown : markdown,//+ "\r\n" + $("#append-test").text(),
+//						markdown : markdown,
 						htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
 						htmlDecode : "style,script,iframe,<,>", // you can filter tags decode
 						toc             : true,
@@ -259,7 +260,7 @@
 					});
 		}
 		//call on load 
-		fetch();
+		load();
 	</script>
 </body>
 

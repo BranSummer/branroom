@@ -50,7 +50,7 @@
 			
 			<div class="btn-group">
 				<button class="btn btn-info" type="button" id="submitb">Submit</button>&nbsp;
-				<button class="btn btn-info" type="button">Save</button>
+				<button class="btn btn-info disabled" type="button">Save</button>
 			</div>
 			
 		</div>
