@@ -27,14 +27,14 @@
 				<div class="col-7">
 					<div class="input-group input-group-lg">
 					  <span class="input-group-text " id="sizing-addon1">Title</span>
-					  <input type="text" class="form-control" placeholder="Better late than never" aria-describedby="sizing-addon1" id="title"/>
+					  <input type="text" class="form-control" placeholder="Better late than never"  value="${title}" aria-describedby="sizing-addon1" id="title"/>
 					</div>
 				</div>
 				
 				<div class="col-5">
 					<div class="input-group input-group-prepend">
 					  <span class="input-group-text " id="sizing-addon1">Keywords</span>
-					  <input type="text" class="form-control" placeholder="以 , 分隔多个关键词" aria-describedby="sizing-addon1" id="keywords"/>
+					  <input type="text" class="form-control" placeholder="以 , 分隔多个关键词" aria-describedby="sizing-addon1" value="${keywords}" id="keywords"/>
 					</div>
 				</div>
 			</div>
@@ -45,12 +45,12 @@
 			<br>
 			
 			<div id="editormd">
-			    <textarea style="display:none;">### Better late than never</textarea>
+			    <textarea style="display:none;">${blogContent}</textarea>
 			</div>
 			
 			<div class="btn-group">
 				<button class="btn btn-info" type="button" id="submitb">Submit</button>&nbsp;
-				<button class="btn btn-info disabled" type="button">Save</button>
+				<button class="btn btn-info disabled" type="button" id="saveb">Save</button>
 			</div>
 			
 		</div>
@@ -64,7 +64,7 @@
 		<script type="text/javascript">
 		    $(function() {
 		        var editor = editormd("editormd", {
-		            path : "./blogStatic/lib/",
+		            path : "${path}/blogStatic/lib/",
 		            width   : "100%",
                     height  : 560,
                     syncScrolling : "single"// Autoload modules mode, codemirror, marked... dependents libs path
@@ -111,6 +111,46 @@
 				submitBlog();
 		
 			});
+		    
+		    <c:if test="${not empty isUpdate}">
+			    function updateBlog(){
+			    	var content=$(".editormd-markdown-textarea").attr("name","content").html();
+			    	var title=$("#title").val();
+			    	var keywords=$("#keywords").val();
+			    	$.ajax({
+			    		type:"post",
+			    		url:"${path}/updateBlog",
+			    		async:true,
+			    		dataType:"json",
+			    		data:{
+			    			"title":title,
+			    			"content":content,
+			    			"keywords":keywords,
+			    			"blogid":${blogid}
+			    		},
+			    		success:function(json){
+							if(json.status=="1"){
+								alert("success");
+								window.location.href="${path}/blogPersonal/${user.userId}";
+							}else{
+								alert(json.message);
+							}
+						},
+						error:function(XMLHttpRequest, textStatus, errorThrown){
+								
+						}
+			    	});
+			    }
+			    
+			    $("#submitb").attr("class","btn btn-info disabled");
+			    $("#saveb").attr("class","btn btn-info");
+			    
+			    $("#saveb").click(function(){
+			    	updateBlog();
+			    });
+		    </c:if>
+		    
+		   
 		</script>
 	</body>
 </html>

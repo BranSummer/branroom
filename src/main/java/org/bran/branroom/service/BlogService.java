@@ -1,5 +1,6 @@
 package org.bran.branroom.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.bran.branroom.dto.Result;
@@ -11,7 +12,7 @@ public interface BlogService {
 	
 	void deleteBlog(Blog b);
 	
-	void updateBlog(Blog b);
+	void updateBlog(String title,int id,List<String> keywords,String content);
 	
 	int getCountByAuthor(String author);
 	

@@ -1,9 +1,12 @@
 package org.bran.branroom.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.bran.branroom.dao.BlogDao;
 import org.bran.branroom.dto.Result;
 import org.bran.branroom.entity.Blog;
 import org.bran.branroom.entity.User;
@@ -24,6 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class BlogController {
 	@Resource
 	BlogService blogService;
+	
+	@Resource
+	BlogDao blogDao;
 	
 	//导向个人主页
 	@RequestMapping(value="/blogPersonal/{author}")
@@ -64,14 +70,13 @@ public class BlogController {
 		return response.toJson();
 	}
 	
-	//导向blog编辑页面
+	//导向blog编辑页面,空白编辑
 	@RequestMapping(value="/blogEdit")
 	public String blogEditPage(){
 		return "/blog/blogedit";
 	}
 	
-	
-	//提交文章
+	//提交文章,首次提交
 	@RequestMapping(value="/submitBlog",method=RequestMethod.POST,produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String submitBlog(@RequestParam("title")String title,@RequestParam("content")String content,Model model){
@@ -84,10 +89,39 @@ public class BlogController {
 		b.setTitle(title);
 		b.setPosttime(time);
 		blogService.submitNewBlog(b);
-		r.setMessage("save blog");
+		r.setMessage("submitted blog");
 		r.setStatus(Result.SUCCESS);
 		return r.toJson();
 		
+	}
+	
+	//到向blog编辑页面,已存在的blog,用于更新blog
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/blogUpdatePage/{blogid}")
+	public ModelAndView blogEditPage(@PathVariable Integer blogid,Model model){
+		User user=(User) model.asMap().get("user");
+		Blog blog=blogDao.queryById(blogid);
+		if(!user.getUserId().equals(blog.getAuthor())){   //判断blog作者是否与当前登录用户一致
+			return new ModelAndView("404");
+		}
+		
+		Map map=new HashMap<String,String>();
+		map.put("blogContent", blog.getContent());
+		map.put("title", blog.getTitle());
+		map.put("isUpdate", "true");
+		map.put("blogid", blogid);
+		return new ModelAndView("/blog/blogedit", map); 
+		
+	}
+	
+	@RequestMapping(value="/updateBlog",method=RequestMethod.POST,produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String updateBlog(@RequestParam("title")String title,@RequestParam("content")String content,@RequestParam("blogid")Integer blogid){
+		Result r=new Result();
+		blogService.updateBlog(title, blogid, null, content);
+		r.setStatus(Result.SUCCESS);
+		r.setMessage("update blog");
+		return r.toJson();	
 	}
 	
 	

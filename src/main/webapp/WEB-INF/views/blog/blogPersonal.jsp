@@ -153,13 +153,18 @@
 				return time;
 			}
 			
-			function generateLink1(id){
+			function generateLink1(id){ 
 				var src='${path}/blogPostPage/'+id;
 				return src;
 			}
 			
 			function generateLink2(author){
 				var src='${path}/blogPersonal/'+author;
+				return src;
+			}
+			
+			function generateLink3(id){
+				var src='${path}/blogUpdatePage/'+id;
 				return src;
 			}
 			
@@ -184,6 +189,7 @@
 				cardbody.append(cardtitle);
 				cardbody.append(cardtext);
 				cardbody.append(link1);
+				
 				var cardfoot = $('<div></div>');
 				cardfoot.addClass('card-footer text-muted');
 				var meta = 'Posted on ' + generateDate(m.posttime) + ' by ';
@@ -192,6 +198,13 @@
 				link2.attr('href',generateLink2(m.author) );
 				link2.html(m.author);
 				cardfoot.append(link2);
+				
+				var link3 = $('<a></a>');
+				link3.attr('href', generateLink3(m.id));
+				link3.addClass('btn btn-outline-info float-right');
+				link3.html('edit');
+				cardfoot.append(link3);
+				
 				card.append(img);
 				card.append(cardbody);
 				card.append(cardfoot);

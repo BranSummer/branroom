@@ -47,9 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update blog set
 		title=#{title},
-		author=#{title},
 		content=#{content},
 		posttime=#{posttime}
-		where id={#id}
+		where id=#{id}
 	</update>
 </mapper>

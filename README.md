@@ -55,5 +55,7 @@ Complete this document
 * 2017-11-24 14:11:49   
 Add emoji picker
 * 2018-4-27 21:56:34   
-add blog module(supoting markdown)  
+Add blog module(supoting markdown)  
 call turing robot API on chatting module
+* 2018-5-6 11:02:50   
+User can edit their published blogs now

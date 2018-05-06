@@ -21,4 +21,4 @@ create table if not exists blogtime(
 	firsttime datetime not null,
 	lasttime datetime not null,
 	foreign key(id) references blog(id)
-)ENGINE=InniDB DEFAULT CHARSET=utf-8;
+)ENGINE=InniDB DEFAULT CHARSET=utf8;

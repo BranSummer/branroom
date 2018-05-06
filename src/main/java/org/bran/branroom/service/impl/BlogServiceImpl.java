@@ -1,5 +1,6 @@
 package org.bran.branroom.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class BlogServiceImpl implements BlogService {
 	@Resource
 	private UserDao userDao;
 	
-	
+	//提交发布blog
 	@Override
 	@Transactional
 	public void submitNewBlog(Blog b) {
@@ -38,9 +39,15 @@ public class BlogServiceImpl implements BlogService {
 		blogDao.delete(b);
 	}
 
+	
+	//更新博客内容/标题/或关键词   面向客户使用 
 	@Override
-	public void updateBlog(Blog b) {
-		blogDao.update(b);
+	@Transactional
+	public void updateBlog(String title,int id,List<String> keywords,String content) {
+		Blog blog=blogDao.queryById(id);
+		blog.setContent(content);
+		blog.setTitle(title);
+		blogDao.update(blog);
 	}
 
 	@Override
