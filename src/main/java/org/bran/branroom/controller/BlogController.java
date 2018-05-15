@@ -31,6 +31,13 @@ public class BlogController {
 	@Resource
 	BlogDao blogDao;
 	
+	//导向blog首页
+	@RequestMapping(value="/blogHome")
+	public ModelAndView blogHomePage(){
+		int blogNum=blogDao.queryAll().size();
+		return new ModelAndView("/blog/blogHome","blogNum",blogNum);
+	}
+	
 	//导向个人主页
 	@RequestMapping(value="/blogPersonal/{author}")
 	public ModelAndView blogPersonalPage(@PathVariable("author") String author){
@@ -55,6 +62,15 @@ public class BlogController {
 		Result result=blogService.getBlogsByPage(0, 10);
 		return result.toJson();
 	}
+	
+	//在blog首页加载获取非初始预览blog内容,分页获取
+		@RequestMapping(value="/fetchBlogList",method=RequestMethod.GET,produces="application/json;charset=utf-8")
+		@ResponseBody
+		public String fetchBlogs(@RequestParam("offset")Integer offset,@RequestParam("size")Integer size){
+			Result result=blogService.getBlogsByPage(offset, size);
+			return result.toJson();
+		}
+	
 	
 	//导向{blogid}指定的blog展示页面
 	@RequestMapping(value="/blogPostPage/{blogid}")

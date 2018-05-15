@@ -82,7 +82,16 @@
 	<!-- Main Content -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8 col-md-10 mx-auto" id="preview"></div>
+			<div class="col-lg-8 col-md-10 mx-auto" id="preview">
+			
+			</div>
+			
+			<!--pager-->
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="clearfix">
+					<button class="btn btn-primary float-right" onclick="loadMoreBlogs()" id="moreBtn">More Posts &rarr;</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<hr>
@@ -133,6 +142,12 @@
 	<script src="${path }/blogStatic/js/clean-blog.min.js"
 		type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+			<%-- blog总数 --%>
+			var blogNum=${blogNum};
+			
+			<%-- 当前页面最后一篇blog的索引 --%>
+			var blogIndex=0;  
+			
 			function generateDate(d){
 				var time=d.month+" "+d.dayOfMonth+","+d.year;
 				return time;
@@ -170,20 +185,15 @@
 				
 				$("#preview").append(previewDiv);
 				$("#preview").append("<hr>")
+				
+				<%-- blog index加一 --%>
+				blogIndex++;
 			}
 			
 			function addAll(list) {
 				$.each(list, function(index, item) {
 					addItem(item);
 				});
-				var btnMore = $('<a></a>')
-				btnMore.attr('href', '#');
-				btnMore.addClass('btn btn-primary float-right');
-				btnMore.text('More Posts →')
-				var btnDiv = $('<div></div>');
-				btnDiv.addClass('clearfix');
-				btnDiv.append(btnMore);
-				$("#preview").append(btnDiv);
 			}
 			
 			function initialPage(){
@@ -200,6 +210,35 @@
 					}
 				});
 			}
+			
+			function loadMoreBlogs(){
+				if(blogIndex>=blogNum){
+					return false;
+				}
+				
+				var offset =blogIndex;
+				
+				$.ajax({
+					type:"get",
+					url:"${path}/fetchBlogList",
+					async:true,
+					dataType:"json",
+					data:{
+						"offset":offset,
+						"size":10
+					},
+					success:function(json){
+						if(json.status=='1'){
+							addAll(json.umessage);
+						}
+					}
+				});
+				
+			}
+			
+			
+			
+			<%-- 初始化页面 --%>
 			initialPage();
 		</script>
 </body>

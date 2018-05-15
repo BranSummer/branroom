@@ -23,10 +23,7 @@ public class RouteController {
 		return "redirect:/blogHome";
 	}
 	
-	@RequestMapping(value="/blogHome")
-	public String blogHomePage(){
-		return "/blog/blogHome";
-	}
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(){
