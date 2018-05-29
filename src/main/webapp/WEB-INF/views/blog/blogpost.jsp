@@ -211,6 +211,8 @@
 		type="text/javascript" charset="utf-8"></script>
 	<script src="${path}/blogStatic/vendor/editor/editormd.js"
 		type="text/javascript" charset="utf-8"></script>
+	<script src="${path}/blogStatic/js/jquery.goup.min.js" type="text/javascript" charset="utf-8"></script>
+		
 	<script type="text/javascript">
 		function render(m) {
 			$("#blog-title").html(m.title);
@@ -261,6 +263,18 @@
 		}
 		//call on load 
 		load();
+	</script>
+	
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $.goup({
+                trigger: 100,
+                bottomOffset: 150,
+                locationOffset: 100,
+                title: 'Back to TOP',
+                titleAsText: true
+            });
+        });
 	</script>
 </body>
 
