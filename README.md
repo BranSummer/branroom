@@ -59,3 +59,5 @@ Add blog module(supoting markdown)
 call turing robot API on chatting module
 * 2018-5-6 11:02:50   
 User can edit their published blogs now
+* 2018-7-13 9:56:20
+add shiro support for security
