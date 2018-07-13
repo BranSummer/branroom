@@ -42,6 +42,7 @@ public class AccountController {
 		}else{
 			result.setStatus(Result.FAILURE);
 			result.setMessage("The username has been used!");
+
 		}
 		return result.toJson();
 	}

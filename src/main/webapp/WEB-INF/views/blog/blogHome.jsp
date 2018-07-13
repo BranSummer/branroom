@@ -71,8 +71,7 @@
 				<div class="col-lg-8 col-md-10 mx-auto">
 					<div class="site-heading">
 						<h1>Bran Blog</h1>
-						<span class="subheading">Tomorrow is a mystery.Today is a
-							gift</span>
+						<span class="subheading">Stay Foolish , Stay Hungary</span>
 					</div>
 				</div>
 			</div>
