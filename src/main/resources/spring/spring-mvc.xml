@@ -9,76 +9,75 @@
                         http://www.springframework.org/schema/context/spring-context-4.0.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-	
-	<!-- Enable annotation scanning ,MVC scan for @Controller only -->
-	 <context:component-scan base-package="org.bran.branroom" use-default-filters="false">
+
+    <!-- Enable annotation scanning ,MVC scan for @Controller only -->
+    <context:component-scan base-package="org.bran.branroom" use-default-filters="false">
         <!-- sacn for@Controller -->
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-	
-	<!-- viewResolver  视图解析器 -->
+
+    <!-- viewResolver  视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
-    
+
     <!--  static resources mapping 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/"/>
     <mvc:resources mapping="/blogStatic/**" location="/blogStatic/"/>
 
-  <!--   <mvc:resources location="/" mapping="/**/*.html"/>
-    <mvc:resources location="/" mapping="/**/*.js"/>
-    <mvc:resources location="/" mapping="/**/*.css"/>
-	<mvc:resources location="/" mapping="/**/*.jpg"/>
-	<mvc:resources location="/" mapping="/**/*.png"/>
-	<mvc:resources location="/" mapping="/**/*.map"/>
-	<mvc:resources location="/" mapping="/**/*.gif"/> -->
+    <!--   <mvc:resources location="/" mapping="/**/*.html"/>
+      <mvc:resources location="/" mapping="/**/*.js"/>
+      <mvc:resources location="/" mapping="/**/*.css"/>
+      <mvc:resources location="/" mapping="/**/*.jpg"/>
+      <mvc:resources location="/" mapping="/**/*.png"/>
+      <mvc:resources location="/" mapping="/**/*.map"/>
+      <mvc:resources location="/" mapping="/**/*.gif"/> -->
 
-	<!-- 拦截器 -->
-	<mvc:interceptors>
-		<!-- 登录拦截器 -->
-		<mvc:interceptor>
-			<!-- 需要拦截的路径 -->
-			<mvc:mapping path="/**"/>
-			<!-- 排除拦截的地址 -->
-			<mvc:exclude-mapping path="/static/**"/>
-			<mvc:exclude-mapping path="/blogStatic/**"/>
-			<bean id="LoginInterceptor" class="org.bran.branroom.interceptor.LoginInterceptor">
-				<property name="urlIgnore">
-					<list>
-						<!-- 注册登录页面 -->
-						<value>/signIn</value>
-						<value>/login</value>
-						<value>/signUpPage</value>
-						<value>/check</value>
-						<value>/signUp</value>
-						<!-- blog首页 -->
-						<value>/blogHome</value>
-						<value>/fetchBlogs</value>
-						<!-- blog展示页面 正则 -->
-						<value>.*/blogPostPage/\d+</value>
-						<value>.*/fetchblog/\d+</value>
-						<!-- blog个人页面  正则-->
-						<!-- <value>.*/blogPersonal/.+</value>
-						<value>.*/fetchBlogList/.+</value> -->
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
-		
-		<!-- 防止重复登录拦截器 -->
-		<mvc:interceptor>
-			<mvc:mapping path="/login"/>
-			<mvc:mapping path="/signUpPage"/>
-			<bean id="antiDupLoginInterceptor" class="org.bran.branroom.interceptor.AntiDupLoginInterceptor">
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
-	
-   <!-- enable annotation model 开启注解模式 -->
-	<mvc:annotation-driven />
-    
-    
-    
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 登录拦截器 -->
+        <mvc:interceptor>
+            <!-- 需要拦截的路径 -->
+            <mvc:mapping path="/**"/>
+            <!-- 排除拦截的地址 -->
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/blogStatic/**"/>
+            <bean id="LoginInterceptor" class="org.bran.branroom.interceptor.LoginInterceptor">
+                <property name="urlIgnore">
+                    <list>
+                        <!-- 注册登录页面 -->
+                        <value>/signIn</value>
+                        <value>/login</value>
+                        <value>/signUpPage</value>
+                        <value>/check</value>
+                        <value>/signUp</value>
+                        <!-- blog首页 -->
+                        <value>/blogHome</value>
+                        <value>/fetchBlogs</value>
+                        <!-- blog展示页面 正则 -->
+                        <value>.*/blogPostPage/\d+</value>
+                        <value>.*/fetchblog/\d+</value>
+                        <!-- blog个人页面  正则-->
+                        <!-- <value>.*/blogPersonal/.+</value>
+                        <value>.*/fetchBlogList/.+</value> -->
+                    </list>
+                </property>
+            </bean>
+        </mvc:interceptor>
+
+        <!-- 防止重复登录拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/login"/>
+            <mvc:mapping path="/signUpPage"/>
+            <bean id="antiDupLoginInterceptor" class="org.bran.branroom.interceptor.AntiDupLoginInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <!-- enable annotation model 开启注解模式 -->
+    <mvc:annotation-driven/>
+
+
 </beans>
