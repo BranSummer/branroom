@@ -3,7 +3,9 @@ package org.bran.branroom.config;
 
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.bran.branroom.security.CustomRealm;
 import org.bran.branroom.security.RetryLimitHashedCredentialsMatcher;
@@ -59,6 +61,12 @@ public class ShiroConfig {
         return  customRealm;
     }
 
+    @Bean
+    public SecurityManager securityManager(CustomRealm customRealm){
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(customRealm);
+        return securityManager;
+    }
     
 
 }
