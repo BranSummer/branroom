@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"https://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.bran.branroom.dao.UserDao">
 
-	<insert id="insert" parameterType="User">
-		insert into
-		user
-		values(#{userId},#{password},#{gender},#{avatar},#{permission},#{email},#{introduction})
-	</insert>
+    <sql id="user_model">
+        userId, password, gender, avatar, permission, email, instroduction
+    </sql>
 
-	<update id="update" parameterType="User">
-		update user set
-		password=#{password},
-		gender=#{gender},
-		avatar=#{avatar},
-		permission=#{permission},
-		email=#{email},
-		introduction=#{introduction}
-		where userid=#{userId}
-	</update>
+    <insert id="insert" parameterType="User">
+        insert into
+        user(<include refid="user_model"/>)
+        values(#{userId},#{password},#{gender},#{avatar},#{permission},#{email},#{introduction})
+    </insert>
 
-	<delete id="delete">
-		delete from user where userid=#{userId}
-	</delete>
+    <update id="update" parameterType="User">
+        update user set
+        password=#{password},
+        gender=#{gender},
+        avatar=#{avatar},
+        permission=#{permission},
+        email=#{email},
+        introduction=#{introduction}
 
-	<select id="queryAll" resultType="User">
-		select * from user
-	</select>
+        where userid=#{userId}
+    </update>
 
-	<select id="queryByUserId" resultType="User">
-		select * from user where
-		userid=#{userId}
-	</select>
+    <delete id="delete">
+        delete from user where userid=#{userId}
+    </delete>
+
+    <select id="queryAll" resultType="User">
+        select
+        <include refid="user_model"/>
+        from user
+    </select>
+
+    <select id="queryByUserId" resultType="User">
+        select
+        <include refid="user_model"/>
+        from user where
+        userid=#{userId}
+    </select>
 </mapper>

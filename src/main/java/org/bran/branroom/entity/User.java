@@ -9,38 +9,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @date: 2017/10/07 13:28:58
  */
 public class User implements Comparable<User> {
-	
-	@JsonIgnore
+
 	public static final boolean GENDER_MALE=true;
-	
-	@JsonIgnore
+
 	public static final boolean GENDER_FEMALE=false;
 	
 	/**
 	 * default avatar img="/branroom/static/img/default.png"
 	 */
-	@JsonIgnore
 	public static final String DEFAULT_AVATAR="/branroom/static/img/default.png";
 	
 	/**
 	 * default introduction ""
 	 */
-	@JsonIgnore
 	public static final String DEFAULT_INTRRO="";
-	
-	@JsonIgnore
+
 	public static final String PERMI_ADMIN="10";
-	
-	@JsonIgnore
+
 	public static final String PERMI_USER_C="0";
-	
-	@JsonIgnore
+
 	public static final String PERMI_USER_B="1";
 	
 	private String userId;
 	
 	@JsonIgnore
 	private String password;
+
+	@JsonIgnore
+	private String salt;
 	
 	private boolean gender;
 	
@@ -110,6 +106,14 @@ public class User implements Comparable<User> {
 
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	@Override

@@ -13,4 +13,6 @@ public interface UserService {
 	void cancelUser(User user);
 	
 	User signUp(User user);
+
+	User findUserByName(String name);
 }

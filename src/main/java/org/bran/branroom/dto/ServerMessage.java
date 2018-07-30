@@ -12,12 +12,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ServerMessage implements Serializable {
-	@JsonIgnore
+
 	private static final long serialVersionUID = 1L;
-	
-	
-	
-	
 	
 	private MessageType type;
 	
@@ -26,9 +22,7 @@ public class ServerMessage implements Serializable {
 	private String content;
 	
 	private Set<User> onlineList;
-	
 
-	
 
 	public MessageType getType() {
 		return type;

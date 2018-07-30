@@ -42,7 +42,7 @@ public class ShiroConfig {
         //指定散列算法为md5
         credentialsMatcher.setHashAlgorithmName("md5");
         //散列迭代次数
-        credentialsMatcher.setHashIterations(3);
+        credentialsMatcher.setHashIterations(2);
         //表示是否存储散列后的密码为16进制
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;

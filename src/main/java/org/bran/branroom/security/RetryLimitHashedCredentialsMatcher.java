@@ -6,7 +6,7 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 
 
 /**
- * 凭证匹配器
+ * @Description 凭证匹配器
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
     @Override

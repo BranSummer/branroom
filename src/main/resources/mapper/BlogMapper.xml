@@ -1,54 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"https://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.bran.branroom.dao.BlogDao">
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-		insert into blog(title,author,content,posttime)
-		values(#{title},#{author},#{content},#{posttime})
-	</insert>
-	
-	<select id="queryBlogByAuthor" resultType="Blog">
-		select * from blog where author like CONCAT(CONCAT("%",#{userid}),"%")
-	</select>
-	
-	<select id="queryBlogByTitle" resultType="Blog">
-		select * from blog where title like CONCAT(CONCAT("%",#{title},"%"))
-	</select>
-	
-	<select id="queryById" resultType="Blog">
-		select * from blog where id=#{id}
-	</select>
-	
-	<select id="queryCountByAuthor" resultType="Integer">
-		select count(id) from blog where author = #{author}
-	</select>
-	
-	<select id="queryBlogByPage" parameterType="Map" resultType="Blog">
-		select * from blog 
-		<if test="author!=null">
-		where author = #{author}
-		</if>
-		order by id desc
-		<if test="offset!=null and size!=null">
-		limit #{offset} , #{size}
-		</if>
-	</select>
-	
-	<select id="queryAll" resultType="Blog">
-		select * from blog
-	</select>
-	
-	<delete id="delete">
-		delete from blog where id=#{id}
-	</delete>
-	
-	<update id="update">
-		update blog set
-		title=#{title},
-		content=#{content},
-		posttime=#{posttime}
-		where id=#{id}
-	</update>
+
+    <sql id="blog_model">
+        id, title, author, content, posttime
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into blog(<include refid="blog_model"/>)
+        values(#{title},#{author},#{content},#{posttime})
+    </insert>
+
+    <select id="queryBlogByAuthor" resultType="Blog">
+        select
+        <include refid="blog_model"/>
+        from blog where author like CONCAT(CONCAT("%",#{userid}),"%")
+    </select>
+
+    <select id="queryBlogByTitle" resultType="Blog">
+        select
+        <include refid="blog_model"/>
+        from blog where title like CONCAT(CONCAT("%",#{title},"%"))
+    </select>
+
+    <select id="queryById" resultType="Blog">
+        select
+        <include refid="blog_model"/>
+        from blog where id=#{id}
+    </select>
+
+    <select id="queryCountByAuthor" resultType="Integer">
+        select count(id) from blog where author = #{author}
+    </select>
+
+    <select id="queryBlogByPage" parameterType="Map" resultType="Blog">
+        select
+        <include refid="blog_model"/>
+        from blog
+        <if test="author!=null">
+            where author = #{author}
+        </if>
+        order by id desc
+        <if test="offset!=null and size!=null">
+            limit #{offset} , #{size}
+        </if>
+    </select>
+
+    <select id="queryAll" resultType="Blog">
+        select
+        <include refid="blog_model"/>
+        from blog
+    </select>
+
+    <delete id="delete">
+        delete from blog where id=#{id}
+    </delete>
+
+    <update id="update">
+        update blog set
+        <if test="title != null">
+            title=#{title},
+        </if>
+        <if test="content !=null">
+            content=#{content},
+        </if>
+        <if test="posttime">
+            posttime=#{posttime}
+        </if>
+=        where id=#{id}
+    </update>
 </mapper>
