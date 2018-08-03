@@ -6,13 +6,13 @@
 <mapper namespace="org.bran.branroom.dao.UserDao">
 
     <sql id="user_model">
-        userId, password, gender, avatar, permission, email, instroduction
+        userId, password, gender, avatar, permission, email, introduction, salt
     </sql>
 
     <insert id="insert" parameterType="User">
         insert into
         user(<include refid="user_model"/>)
-        values(#{userId},#{password},#{gender},#{avatar},#{permission},#{email},#{introduction})
+        values(#{userId},#{password},#{gender},#{avatar},#{permission},#{email},#{introduction},#{salt})
     </insert>
 
     <update id="update" parameterType="User">
@@ -22,8 +22,8 @@
         avatar=#{avatar},
         permission=#{permission},
         email=#{email},
-        introduction=#{introduction}
-
+        introduction=#{introduction},
+        salt=#{salt}
         where userid=#{userId}
     </update>
 

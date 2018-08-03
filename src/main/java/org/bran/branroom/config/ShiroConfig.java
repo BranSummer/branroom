@@ -5,6 +5,7 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.bran.branroom.security.CustomRealm;
@@ -19,26 +20,26 @@ public class ShiroConfig {
 
     @Bean
     @Description("生命周期处理器,保证实现了Shiro内部lifecycle函数的bean执行")
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
     @Bean
     @Description("缓存管理器")
-    public MemoryConstrainedCacheManager cacheManager(){
+    public MemoryConstrainedCacheManager cacheManager() {
         return new MemoryConstrainedCacheManager();
     }
 
     @Bean
     @Description("Servlet容器会话管理器")
-    public ServletContainerSessionManager servletContainerSessionManager(){
+    public ServletContainerSessionManager servletContainerSessionManager() {
         return new ServletContainerSessionManager();
     }
 
     @Bean
     @Description("凭证匹配器")
-    public RetryLimitHashedCredentialsMatcher credentialsMatcher(){
-        RetryLimitHashedCredentialsMatcher credentialsMatcher= new RetryLimitHashedCredentialsMatcher();
+    public RetryLimitHashedCredentialsMatcher credentialsMatcher() {
+        RetryLimitHashedCredentialsMatcher credentialsMatcher = new RetryLimitHashedCredentialsMatcher();
         //指定散列算法为md5
         credentialsMatcher.setHashAlgorithmName("md5");
         //散列迭代次数
@@ -48,25 +49,32 @@ public class ShiroConfig {
         return credentialsMatcher;
     }
 
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setLoginUrl("/signIn");
+        shiroFilterFactoryBean.setSuccessUrl("/profile");
+        return shiroFilterFactoryBean;
+    }
 
     @Bean
     @Description("这是个自定义的认证类，继承自AuthorizingRealm， 负责用户的认证和权限的处理")
-    public CustomRealm customRealm(RetryLimitHashedCredentialsMatcher matcher){
-        CustomRealm customRealm =new CustomRealm();
+    public CustomRealm customRealm(RetryLimitHashedCredentialsMatcher matcher) {
+        CustomRealm customRealm = new CustomRealm();
         //凭证匹配器
         customRealm.setCredentialsMatcher(matcher);
         //是否缓存
         customRealm.setCachingEnabled(true);
 
-        return  customRealm;
+        return customRealm;
     }
 
     @Bean
-    public SecurityManager securityManager(CustomRealm customRealm){
+    public SecurityManager securityManager(CustomRealm customRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(customRealm);
         return securityManager;
     }
-    
+
 
 }

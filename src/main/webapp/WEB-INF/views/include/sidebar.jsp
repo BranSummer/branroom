@@ -40,6 +40,9 @@
 		window.location.href='${path}/signOut';
 	});
 	$("#blog").click(function(){
-		window.location.href='${path}/blogHome';
-	})
+        window.location.href='${path}/blogHome';
+    })
+    $("#help").click(function(){
+        window.location.href='${path}/static/html/help.html';
+    })
 </script>

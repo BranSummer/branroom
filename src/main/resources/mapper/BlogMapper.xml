@@ -6,12 +6,12 @@
 <mapper namespace="org.bran.branroom.dao.BlogDao">
 
     <sql id="blog_model">
-        id, title, author, content, posttime
+        id, title, author, content, posttime, updatetime
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into blog(<include refid="blog_model"/>)
-        values(#{title},#{author},#{content},#{posttime})
+        values(#{title},#{author},#{content},#{posttime},#{updatetime})
     </insert>
 
     <select id="queryBlogByAuthor" resultType="Blog">
@@ -67,8 +67,11 @@
         <if test="content !=null">
             content=#{content},
         </if>
-        <if test="posttime">
-            posttime=#{posttime}
+        <if test="posttime != null">
+            posttime=#{posttime},
+        </if>
+        <if test="updatetime!=null">
+            updatetime=#{updatetime}
         </if>
 =        where id=#{id}
     </update>

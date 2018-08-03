@@ -4,6 +4,7 @@ import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.StringUtils;
 import org.bran.branroom.entity.User;
 import org.springframework.stereotype.Component;
 import sun.security.util.Password;
@@ -29,4 +30,20 @@ public class PasswordUtil {
         return user;
     }
 
+    /**
+     * 密码验证
+     *
+     * @param user
+     * @param Pwd
+     * @return
+     */
+    public boolean Match(User user, String Pwd) {
+        String salt = user.getSalt();
+        String encryptedPwd = new SimpleHash(ALGORITH_NAME, Pwd, ByteSource.Util.bytes(salt), HASH_ITERATIONS).toHex();
+        if (encryptedPwd.equals(user.getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -9,8 +9,17 @@ public class Blog {
 	private String author;
 	private String content;
 	private LocalDateTime posttime;
+	private LocalDateTime updatetime;
 	private List<String> keywords;
-	
+
+
+	public LocalDateTime getUpdatetime() {
+		return updatetime;
+	}
+	public void setUpdatetime(LocalDateTime updatetime) {
+		this.updatetime = updatetime;
+	}
+
 	public LocalDateTime getPosttime() {
 		return posttime;
 	}
@@ -40,7 +49,7 @@ public class Blog {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}	
+	}
 	public List<String> getKeywords() {
 		return keywords;
 	}
