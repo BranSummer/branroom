@@ -10,8 +10,48 @@
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into blog(<include refid="blog_model"/>)
+        insert into blog
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="posttime != null">
+                posttime,
+            </if>
+            <if test="updatetime != null">
+                updatetime
+            </if>
+        </trim>
         values(#{title},#{author},#{content},#{posttime},#{updatetime})
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="author != null">
+                #{author},
+            </if>
+            <if test="content != null">
+                #{content},
+            </if>
+            <if test="posttime != null">
+                #{posttime},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime}
+            </if>
+        </trim>
     </insert>
 
     <select id="queryBlogByAuthor" resultType="Blog">
