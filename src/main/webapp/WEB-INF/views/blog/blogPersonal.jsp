@@ -168,12 +168,12 @@
 				return src;
 			}
 			
-			function addItem(m) {
+			function addItem(m,imgId) {
 				var card = $('<div></div>');
 				card.addClass('card mb-4');
 				var img = $('<img/>');
 				img.addClass('card-img-top');
-				img.attr('src','https://source.unsplash.com/random/750x150?文章');
+				img.attr('src','https://source.unsplash.com/random/750x150?文章'+imgId);
 				var cardbody = $('<div></div>');
 				cardbody.addClass('card-body');
 				var cardtitle = $('<h2></h2>');
@@ -232,7 +232,7 @@
 			</div>*/
 			function addAllItem(list){
 				$.each(list, function(index,item) {
-					addItem(item);
+					addItem(item,index);
 				});
 			}
 		</script>
@@ -244,11 +244,12 @@
 			var pageNum=itemCount/pageSize+1;  //总页数
 			var offset=pageSize*pageIndex;
 			//按条件查找用户
-			function searchItem(pageIndex, pageSize) {
+			function searchItem(offset, pageSize) {
 				//清空要append的目的位置
 				$("#blog-palce").empty();
 				//判断跳页按钮可用性
-				if(pageIndex<pageNum){
+				console.log(pageIndex, offset);
+				if(pageIndex<pageNum&&(pageIndex+1)*pageSize<itemCount){
 					$("#newer").attr("class","page-item");
 				}else{
 					$("#newer").attr("class","page-item disabled");
@@ -286,7 +287,7 @@
 			//前一页
 			function goToPrePage() {　　
 				if(pageIndex>0){
-					pageIndex=pageIndex-1;　　
+					pageIndex--;　　
 					offset=pageIndex*pageSize;
 					searchItem(offset, pageSize);
 				}
@@ -296,7 +297,7 @@
 			//后一页
 			function goToNextPage() {　　
 				if(pageIndex<pageNum-1){
-					pageIndex=pageIndex+1;
+					pageIndex++;
 					offset=pageIndex*pageSize;
 					searchItem(offset,pageSize)
 				}

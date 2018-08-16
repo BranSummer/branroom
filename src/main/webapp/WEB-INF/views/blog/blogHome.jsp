@@ -229,6 +229,8 @@
 					success:function(json){
 						if(json.status=='1'){
 							addAll(json.umessage);
+						}else {
+						    alert("查看更多需要登录");
 						}
 					}
 				});
