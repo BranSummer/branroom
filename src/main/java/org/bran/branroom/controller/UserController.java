@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import org.bran.branroom.dto.Result;
 import org.bran.branroom.entity.User;
 import org.bran.branroom.service.UserService;
+import org.bran.branroom.utils.PasswordUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,10 @@ public class UserController {
 	
 	@Resource
 	private UserService userService;
-	
+
+	@Autowired
+	private PasswordUtil passwordUtil;
+
 	//获取头像相对路径修改头像并返回结果
 	@RequestMapping(value="/chageAvatar",method=RequestMethod.POST,produces = {"application/json; charset=utf-8"})
 	@ResponseBody
@@ -56,6 +61,7 @@ public class UserController {
 	public String resetPwd(@RequestParam("password")String password,Model model){
 		User user=(User) model.asMap().get("user");
 		user.setPassword(password);
+		user = passwordUtil.encryptPassword(user);
 		userService.resetPassword(user, password);
 		model.addAttribute("user", user);
 		return new Result(Result.SUCCESS,"success").toJson();

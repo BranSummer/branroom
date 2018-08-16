@@ -18,7 +18,7 @@ public class PasswordUtilTest extends BaseTest {
     @Autowired
     private PasswordUtil passwordUtil;
 
-//    @Test
+    @Test
     public void encryptPassword() {
         List<User> userList = userDao.queryAll();
         for(User user : userList){

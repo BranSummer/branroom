@@ -9,50 +9,55 @@
         id, title, author, content, posttime, updatetime
     </sql>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into blog
-        <trim prefix="(" suffix=")" prefixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="title != null">
-                title,
-            </if>
-            <if test="author != null">
-                author,
-            </if>
-            <if test="content != null">
-                content,
-            </if>
-            <if test="posttime != null">
-                posttime,
-            </if>
-            <if test="updatetime != null">
-                updatetime
-            </if>
-        </trim>
-        values(#{title},#{author},#{content},#{posttime},#{updatetime})
-        <trim prefix="(" suffix=")" prefixOverrides=",">
-            <if test="id != null">
-                #{id},
-            </if>
-            <if test="title != null">
-                #{title},
-            </if>
-            <if test="author != null">
-                #{author},
-            </if>
-            <if test="content != null">
-                #{content},
-            </if>
-            <if test="posttime != null">
-                #{posttime},
-            </if>
-            <if test="updatetime != null">
-                #{updatetime}
-            </if>
-        </trim>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">
+        insert into blog(title,author,content,posttime,updatetime)
+        value(#{title},#{author},#{content},#{posttime},#{updatetime})
     </insert>
+
+    <!-- <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+         insert into blog
+         <trim prefix="(" suffix=")" prefixOverrides=",">
+             <if test="id != null">
+                 id,
+             </if>
+             <if test="title != null">
+                 title,
+             </if>
+             <if test="author != null">
+                 author,
+             </if>
+             <if test="content != null">
+                 content,
+             </if>
+             <if test="posttime != null">
+                 posttime,
+             </if>
+             <if test="updatetime != null">
+                 updatetime
+             </if>
+         </trim>
+         values(#{title},#{author},#{content},#{posttime},#{updatetime})
+         <trim prefix="(" suffix=")" prefixOverrides=",">
+             <if test="id != null">
+                 #{id},
+             </if>
+             <if test="title != null">
+                 #{title},
+             </if>
+             <if test="author != null">
+                 #{author},
+             </if>
+             <if test="content != null">
+                 #{content},
+             </if>
+             <if test="posttime != null">
+                 #{posttime},
+             </if>
+             <if test="updatetime != null">
+                 #{updatetime}
+             </if>
+         </trim>
+     </insert>-->
 
     <select id="queryBlogByAuthor" resultType="Blog">
         select
@@ -99,20 +104,21 @@
         delete from blog where id=#{id}
     </delete>
 
-    <update id="update">
-        update blog set
+    <update id="update" parameterType="Blog">
+        update blog
+        set
         <if test="title != null">
             title=#{title},
         </if>
         <if test="content !=null">
-            content=#{content},
+            content = #{content},
         </if>
         <if test="posttime != null">
-            posttime=#{posttime},
+            posttime = #{posttime},
         </if>
-        <if test="updatetime!=null">
-            updatetime=#{updatetime}
+        <if test="updatetime!= null">
+            updatetime = #{updatetime}
         </if>
-=        where id=#{id}
+        where id = #{id}
     </update>
 </mapper>

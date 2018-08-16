@@ -107,8 +107,17 @@
 		    	});
 		    }
 		    $("#submitb").click(function(){
-		    	
+		    	if($("#title").val() == ""){
+		    	    alert("标题不能为空");
+		    	    return false;
+				}
+				if($(".editormd-markdown-textarea").attr("name","content").html() == ""){
+		    	    alert("内容不能为空");
+		    	    return false;
+				}
+				if($())
 				submitBlog();
+		    	return true;
 		
 			});
 		    
@@ -146,7 +155,16 @@
 			    $("#saveb").attr("class","btn btn-info");
 			    
 			    $("#saveb").click(function(){
+                    if($("#title").val() == ""){
+                        alert("标题不能为空");
+                        return false;
+                    }
+                    if($(".editormd-markdown-textarea").attr("name","content").html() == ""){
+                        alert("内容不能为空");
+                        return false;
+                    }
 			    	updateBlog();
+                    return true;
 			    });
 		    </c:if>
 		    

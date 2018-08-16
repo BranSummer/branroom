@@ -7,7 +7,7 @@ public class BlogUtil {
         target = source.replaceAll(" ", "")
                 .replaceAll("#", "")
                 .replaceAll("\\*", "")
-                .replaceAll("[TOC]", "");
+                .replaceAll("\\[TOC\\]", "");
 
         return target;
     }

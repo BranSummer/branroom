@@ -47,6 +47,7 @@ public class BlogServiceImpl implements BlogService {
 		Blog blog=blogDao.queryById(id);
 		blog.setContent(content);
 		blog.setTitle(title);
+		blog.setUpdatetime(LocalDateTime.now());
 		blogDao.update(blog);
 	}
 
@@ -119,4 +120,14 @@ public class BlogServiceImpl implements BlogService {
 		return result;
 	}
 
+	/**
+	 * 获取用户热力图
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public Result getHeatChart(String userId) {
+
+		return null;
+	}
 }

@@ -27,4 +27,6 @@ public interface BlogService {
 	Result getBlogsByAuthorByPage(String author,int offset,int size);
 	
 	Result getBlogsByPage(int offset,int size);
+
+	Result getHeatChart(String userId);
 }
