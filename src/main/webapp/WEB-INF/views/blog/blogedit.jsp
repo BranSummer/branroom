@@ -107,9 +107,9 @@
 		    	});
 		    }
 		    $("#submitb").click(function(){
-                if(${isUpdate}==true){
-                    return false;
-                }
+				<c:if test="${not empty isUpdate}">
+					return false;
+				</c:if>
 		    	if($("#title").val() == ""){
 		    	    alert("标题不能为空");
 		    	    return false;
