@@ -55,6 +55,7 @@
                         <!-- blog首页 -->
                         <value>/blogHome</value>
                         <value>/fetchBlogs</value>
+                        <value>/fetchBlogList</value>
                         <!-- blog展示页面 正则 -->
                         <value>.*/blogPostPage/\d+</value>
                         <value>.*/fetchblog/\d+</value>
