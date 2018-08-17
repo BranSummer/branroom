@@ -118,7 +118,7 @@ public class BlogController {
 		User user=(User) model.asMap().get("user");
 		Blog blog=blogDao.queryById(blogid);
 		if(!user.getUserId().equals(blog.getAuthor())){   //判断blog作者是否与当前登录用户一致
-			return new ModelAndView("404");
+			return new ModelAndView("redirect: /static/html/403.html");
 		}
 		
 		Map map=new HashMap<String,String>();

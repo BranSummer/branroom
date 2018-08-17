@@ -1,4 +1,5 @@
 # Branroom
+[TOC]
 
 [![Build Status](https://travis-ci.org/BranSummer/branroom.svg?branch=master)](https://travis-ci.org/BranSummer/branroom)
 

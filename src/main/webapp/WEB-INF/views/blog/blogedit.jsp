@@ -107,6 +107,9 @@
 		    	});
 		    }
 		    $("#submitb").click(function(){
+                if(${isUpdate}==true){
+                    return false;
+                }
 		    	if($("#title").val() == ""){
 		    	    alert("标题不能为空");
 		    	    return false;
@@ -115,7 +118,7 @@
 		    	    alert("内容不能为空");
 		    	    return false;
 				}
-				if($())
+
 				submitBlog();
 		    	return true;
 		
