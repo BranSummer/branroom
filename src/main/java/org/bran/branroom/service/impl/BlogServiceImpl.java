@@ -1,10 +1,7 @@
 package org.bran.branroom.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -15,6 +12,7 @@ import org.bran.branroom.dto.Result;
 import org.bran.branroom.entity.Blog;
 import org.bran.branroom.exception.NoUserException;
 import org.bran.branroom.service.BlogService;
+import org.bran.branroom.utils.BlogUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -127,7 +125,22 @@ public class BlogServiceImpl implements BlogService {
 	 */
 	@Override
 	public Result getHeatChart(String userId) {
-
-		return null;
+		Map<String,Integer> heatMap = new HashMap<>();
+		try{
+            List<Blog> blogs = blogDao.queryBlogByAuthor(userId);
+            for(Blog blog : blogs){
+                LocalDateTime posttime = blog.getPosttime();
+                String dateStr = BlogUtil.getDateStr(posttime);
+                if(heatMap.containsKey(dateStr)){
+                    heatMap.put(dateStr,heatMap.get(dateStr)+1);
+                }else {
+                    heatMap.put(dateStr,1);
+                }
+            }
+        }catch (Exception e){
+		    e.printStackTrace();
+		    return Result.buildErrorResult(e.getMessage(),null);
+        }
+		return Result.buildSuccessResult("获取成功",heatMap);
 	}
 }

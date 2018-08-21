@@ -9,28 +9,28 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<jsp:include page="include/commonfiles.jsp"/>
-		
+
 		<title>branroom</title>
 	</head>
-	
+
 	<body>
 		<!--header-->
 		<jsp:include page="include/header.jsp"/>
-			
+
 		<!-- mid -->
 		<div class="container panel-body main-content">
 			<div class="row">
-	
+
 				<!-- sidebar -->
 				<jsp:include page="include/sidebar.jsp"/>
-				
+
 				<!--profile area-->
 				<div class="col-md-10">
 					<div class="panel panel-default">
 					  <div class="panel-body">
 					    <h3>Your Profile</h3>
 					    <hr/>
-					    
+
 					    <!--basic profile area-->
 					   	<form class="form-horizontal profileForm">
 					   		<div class="form-group">
@@ -39,25 +39,25 @@
 					   				<input class="form-control" type="text" name="userName" id="inputName" value="${user.userId}" readonly="readonly" />
 					   			</div>
 					   		</div>
-					   		
+
 					   		<div class="form-group">
 							   <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 							   <div class="col-sm-10">
 							    <input type="email" class="form-control" id="inputEmail" value="${user.email}" placeholder="example@Email.com">
 							   </div>
 							</div>
-							
-							
+
+
 							  <div class="form-group">
 							    <label for="inputText" class="col-sm-2 control-label">Introduction</label>
 							    <div class="col-sm-10">
 							      <textarea class="form-control" rows="3" id="inputText"  placeholder="say something ..">${user.introduction}</textarea>
 							    </div>
 							  </div>
-							  <button type="submit" class="btn btn-success" id="updateInfor" data-loading-text="Loading..."  autocomplete="off">Update profile</button>						 
+							  <button type="submit" class="btn btn-success" id="updateInfor" data-loading-text="Loading..."  autocomplete="off">Update profile</button>
 					   		<hr/>
 					   	</form>
-					   	
+
 					   	<!--picture area-->
 					   	<div class="profilePic">
 					   		<h4>Profile Picture</h4>
@@ -65,7 +65,7 @@
 					   		<br/><br/>
 					   		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Choose a Avatar</button>
 					   	</div>
-					   	
+
 					   	<!--password reset area-->
 					   	<form class="form-horizontal profileForm"  method="post">
 							  	<span id="helpBlock" class="help-block">Please ensure your password more than 6 characters</span>
@@ -75,7 +75,7 @@
 							     <input type="password" class="form-control" id="inputPassword1" placeholder="Reset Your Password">
 							    </div>
 							  </div>
-							  
+
 							  <div class="form-group">
 							    <label for="inputPassword2" class="col-sm-2 control-label">Password</label>
 							    <div class="col-sm-10">
@@ -84,13 +84,13 @@
 							  </div>
 					   		<button type="submit" class="btn btn-primary" id="savePwd" data-loading-text="Loading..."  autocomplete="off">Save password</button>
 					   	</form>
-					   	
+
 					  </div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!--modal-->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
@@ -101,7 +101,7 @@
 			      </div>
 			      <div class="modal-body">
 			        <div class="row">
-			        	
+
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
 			        			<img src="${path}/static/img/avatar001.jpg" class="img-rounded"/>
@@ -158,7 +158,7 @@
 				        		</div>
 			        		</div>
 			        	</div>
-			        	
+
 			        	<div class="col-xs-6 col-md-3">
 			        		<div class="thumbnail">
 			        			<img src="${path}/static/img/thegirl.jpg" class="img-rounded"/>
@@ -167,9 +167,9 @@
 				        		</div>
 			        		</div>
 			        	</div>
-			        	
-			        	
-			        	
+
+
+
 			        </div>
 			      </div>
 			      <div class="modal-footer">
@@ -178,11 +178,21 @@
 			      </div>
 			    </div>
 			  </div>
-			</div>	
-			
+			</div>
+
+        <%--heatmap 热力图--%>
+        <div class="col-md-10">
+            <div id="heatMap"></div>
+        </div>
+        <script src="${path}/static/js/echarts.min.js"></script>
+        <script>
+
+        </script>
+
+
 		<!-- footer -->
 		<jsp:include page="include/footer.jsp"/>
-	
+
 		<!-- script -->
 		<script type="text/javascript">
 			function changeAvatar(){
@@ -195,12 +205,12 @@
 					data:{"avatar":avatar},
 					success:function(json){
 						location.reload();
-						
+
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
 						alert("fail to connect");
 					}
-					
+
 				});
 			};
 			$('#changeAvatar').on('click', function () {
@@ -251,7 +261,7 @@
 					alert('over password length limit ! ');
 					return false;
 				}
-				
+
 				$.ajax({
 					type:"post",
 					url:"${path}/${user.userId}/resetPwd",
@@ -259,7 +269,7 @@
 					dataType:"json",
 					data:{"password":pwd1},
 					success:function(json){
-						
+
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown){
 						alert("fail to connect");
@@ -274,6 +284,6 @@
 				   $btn.button('reset');
 			});
 		</script>
-		
+
 	</body>
 </html>

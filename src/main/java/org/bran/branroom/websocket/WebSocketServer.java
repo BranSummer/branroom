@@ -21,7 +21,8 @@ import org.bran.branroom.dto.ServerMessage;
 import org.bran.branroom.entity.User;
 import org.bran.branroom.enums.MessageType;
 import org.bran.branroom.service.RobotService;
-import org.bran.branroom.service.impl.RobotServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.socket.server.standard.SpringConfigurator;
 
 
 /**
@@ -30,10 +31,11 @@ import org.bran.branroom.service.impl.RobotServiceImpl;
  * @author: BranSummer
  * @date: 2017/10/07 11:50:43
  */
-@ServerEndpoint(value = "/server/{userParam}")
+@ServerEndpoint(value = "/server/{userParam}",configurator = SpringConfigurator.class )
 public class WebSocketServer {
-
-    private static RobotService robotService = new RobotServiceImpl();
+	
+	@Autowired
+    private  RobotService robotService;
 
     private static int onlineCount = 0;
 

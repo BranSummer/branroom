@@ -3,17 +3,16 @@ package org.bran.branroom.controller;
 import javax.annotation.Resource;
 
 import org.bran.branroom.dto.Result;
+import org.bran.branroom.entity.Blog;
 import org.bran.branroom.entity.User;
+import org.bran.branroom.service.BlogService;
 import org.bran.branroom.service.UserService;
 import org.bran.branroom.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+
 /**
  * 
  * @ClassName: UserController
@@ -28,6 +27,9 @@ public class UserController {
 	
 	@Resource
 	private UserService userService;
+
+	@Autowired
+	private BlogService blogService;
 
 	@Autowired
 	private PasswordUtil passwordUtil;
@@ -66,5 +68,10 @@ public class UserController {
 		model.addAttribute("user", user);
 		return new Result(Result.SUCCESS,"success").toJson();
 	}
-	
+
+	@RequestMapping(value = "/heatMap",method = RequestMethod.GET,produces = {"application/json; charset=utf-8"})
+	@ResponseBody
+	public String getHeatMap(@RequestParam("userId") String userId ){
+		return blogService.getHeatChart(userId).toJson();
+	}
 }

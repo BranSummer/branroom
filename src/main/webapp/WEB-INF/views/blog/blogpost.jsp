@@ -25,7 +25,7 @@
 	<jsp:include page="bloginclude/blognav.jsp" />
 
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container main-content">
 
 		<div class="row">
 

@@ -99,6 +99,12 @@
             <artifactId>spring-tx</artifactId>
             <version>4.1.7.RELEASE</version>
         </dependency>
+        <!-- Spring websocket -->
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>4.1.7.RELEASE</version>
+		</dependency>
         <!-- Spring test -->
         <dependency>
             <groupId>org.springframework</groupId>

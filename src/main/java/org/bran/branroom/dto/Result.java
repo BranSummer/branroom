@@ -69,5 +69,19 @@ public class Result {
 		}
 		return json;
 	}
-	
+
+	public static Result buildSuccessResult(String message,Object umessage){
+		Result result = new Result();
+		result.setStatus(Result.SUCCESS);
+		result.setMessage(message);
+		result.setUmessage(umessage);
+		return result;
+	}
+	public static Result buildErrorResult(String message,Object umessage){
+		Result result = new Result();
+		result.setStatus(Result.FAILURE);
+		result.setMessage(message);
+		result.setUmessage(umessage);
+		return result;
+	}
 }
