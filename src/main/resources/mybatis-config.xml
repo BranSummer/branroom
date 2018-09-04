@@ -16,5 +16,9 @@
 	    <typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />  
 	    <typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />  
 	    <typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />  
-	</typeHandlers>  
+	</typeHandlers>
+
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
 </configuration>
