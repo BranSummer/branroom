@@ -5,6 +5,25 @@
 
 <mapper namespace="org.bran.branroom.dao.BlogDao">
 
+    <!--
+    flushInterval（清空缓存的时间间隔）: 单位毫秒，可以被设置为任意的正整数。
+        默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新。
+    size（引用数目）: 可以被设置为任意正整数，要记住你缓存的对象数目和你运行环境的可用内存资源数目。默认值是1024。
+    readOnly（只读）:属性可以被设置为true或false。只读的缓存会给所有调用者返回缓存对象的相同实例。
+        因此这些对象不能被修改。这提供了很重要的性能优势。可读写的缓存会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是false。
+    eviction（回收策略）: 默认的是 LRU:
+        1.LRU – 最近最少使用的:移除最长时间不被使用的对象。
+        2.FIFO – 先进先出:按对象进入缓存的顺序来移除它们。
+        3.SOFT – 软引用:移除基于垃圾回收器状态和软引用规则的对象。
+        4.WEAK – 弱引用:更积极地移除基于垃圾收集器状态和弱引用规则的对象。
+    blocking（是否使用阻塞缓存）: 默认为false，当指定为true时将采用BlockingCache进行封装，blocking，阻塞的意思，
+        使用BlockingCache会在查询缓存时锁住对应的Key，如果缓存命中了则会释放对应的锁，否则会在查询数据库以后再释放锁，
+        这样可以阻止并发情况下多个线程同时查询数据，详情可参考BlockingCache的源码。
+    type（缓存类）：可指定使用的缓存类，mybatis默认使用HashMap进行缓存
+    -->
+    <cache type="org.mybatis.caches.redis.RedisCache" blocking="false"
+           flushInterval="0" readOnly="true" size="1024" eviction="FIFO"/>
+
     <sql id="blog_model">
         id, title, author, content, posttime, updatetime
     </sql>
@@ -59,13 +78,13 @@
          </trim>
      </insert>-->
 
-    <select id="queryBlogByAuthor" resultType="Blog">
+    <select id="queryBlogByAuthor" resultType="Blog" >
         select
         <include refid="blog_model"/>
         from blog where author like CONCAT(CONCAT("%",#{userid}),"%")
     </select>
 
-    <select id="queryBlogByTitle" resultType="Blog">
+    <select id="queryBlogByTitle" resultType="Blog" useCache="true">
         select
         <include refid="blog_model"/>
         from blog where title like CONCAT(CONCAT("%",#{title},"%"))

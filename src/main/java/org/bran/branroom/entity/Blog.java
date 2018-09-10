@@ -1,9 +1,10 @@
 package org.bran.branroom.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Blog {
+public class Blog implements Serializable {
 	private int id;
 	private String title;
 	private String author;
