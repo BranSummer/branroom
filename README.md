@@ -12,7 +12,7 @@ This project is completed in my java web learning process, may be low and simple
 * Framework:Spring+Spring MVC+mybatis
 * Front-end:Bootstrap
 * DBMS:MySQL
-* IDE:eclipse
+* IDE: <del>eclipse</del> IDEA
 
 ## 网站模块
 我的网站从功能上总共划分为用户模块 , 博客模块 , 在线聊天模块  
@@ -60,5 +60,7 @@ Add blog module(supoting markdown)
 call turing robot API on chatting module
 * 2018-5-6 11:02:50   
 User can edit their published blogs now
-* 2018-7-13 9:56:20
+* 2018-7-13 9:56:20  
 add shiro support for security
+* 2018-9-11 20:23:20   
+use cache with mybatis-redis
